@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HomePageComponent } from "./components/home-page/home-page.component";
+import { LoginComponent } from "./components/login/login.component";
+import { AskquestionComponent } from "./components/questions/askquestion/askquestion.component";
+import { UpdatequestionComponent } from "./components/questions/updatequestion/updatequestion.component";
+import { RegisterComponent } from "./components/register/register.component";
+
 
 @NgModule({
     declarations: [
@@ -18,7 +23,11 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
         AppRoutingModule,
         HeaderComponent,
         FooterComponent,
-        HomePageComponent
+        HomePageComponent,
+        LoginComponent,
+        AskquestionComponent,
+        UpdatequestionComponent,
+        RegisterComponent
     ]
 })
 export class AppModule { }

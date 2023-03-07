@@ -1,1 +1,35 @@
-<p>askquestion works!</p>
+<div class="container" [formGroup]="askForm" (ngSubmit)="askquestion()">
+  <form>
+    <div>
+      <label for="title">Question title</label><br>
+      <input type="text" formControlName="title">
+      <!-- <p *ngIf="askForm.get('title')!.touched">title is required</p> -->
+      <p *ngIf="askForm.get('title')!.touched && askForm.get('title')!.invalid">Please enter title</p>
+    </div>
+    <br>
+    <div>
+      <label for="description">Question description</label><br>
+      <input type="text" formControlName="description">
+      <p *ngIf="askForm.get('description')!.touched && askForm.get('description')!.invalid">description is requred</p>
+    </div>
+    <br>
+    <div>
+      <label for="trial">What you tried </label><br>
+      <input type="text" formControlName="trial">
+      <p *ngIf="askForm.get('trial')!.touched && askForm.get('trial')!.invalid">Trial is required</p>
+    </div>
+    <br>
+    <div>
+      <label for="tags">Tags</label><br>
+      <input type="text" formControlName="tags">
+      <p *ngIf="askForm.get('tags')!.touched && askForm.get('tags')!.invalid">Tag is requred</p>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-butttons">
+      <input type="submit" value="Ask question" [disabled]="!askForm.valid">
+      <br>
+    </div>
+
+  </form>
+</div>

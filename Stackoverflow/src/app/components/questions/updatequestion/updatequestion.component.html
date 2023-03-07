@@ -1,1 +1,35 @@
-<p>updatequestion works!</p>
+<div class="container" [formGroup]="updateForm" (ngSubmit)="updateQuestion()">
+  <form>
+    <div>
+      <label for="title">Question title</label><br>
+      <input type="text" formControlName="title">
+      <!-- <p *ngIf="updateForm.get('title')!.touched">title is required</p> -->
+      <p *ngIf="updateForm.get('title')!.touched && updateForm.get('title')!.invalid">Please enter title</p>
+    </div>
+    <br>
+    <div>
+      <label for="description">Question description</label><br>
+      <input type="text" formControlName="description">
+      <p *ngIf="updateForm.get('description')!.touched && updateForm.get('description')!.invalid">description is requred</p>
+    </div>
+    <br>
+    <div>
+      <label for="trial">What you tried </label><br>
+      <input type="text" formControlName="trial">
+      <p *ngIf="updateForm.get('trial')!.touched && updateForm.get('trial')!.invalid">Trial is required</p>
+    </div>
+    <br>
+    <div>
+      <label for="tags">Tags</label><br>
+      <input type="text" formControlName="tags">
+      <p *ngIf="updateForm.get('tags')!.touched && updateForm.get('tags')!.invalid">Tag is required</p>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-butttons">
+      <input type="submit" value="Update question" [disabled]="!updateForm.valid">
+      <br>
+    </div>
+
+  </form>
+</div>

@@ -1,1 +1,26 @@
-<p>register works!</p>
+<div class="container" [formGroup]="registerForm" (ngSubmit)="register()">
+  <form>
+    <div>
+      <label for="username">Username</label><br>
+      <input type="text" formControlName="username">
+      <p *ngIf="registerForm.get('username')!.touched && registerForm.get('username')!.invalid">Username is requred</p>
+    </div>
+    <div>
+      <label for="email">Email</label><br>
+      <input type="text" formControlName="email">
+      <!-- <p *ngIf="registerForm.get('email')!.touched">Email is required</p> -->
+      <p *ngIf="registerForm.get('email')!.touched && registerForm.get('email')!.invalid">Please enter a valid email</p>
+    </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input type="text" formControlName="password">
+      <p *ngIf="registerForm.get('password')!.touched && registerForm.get('password')!.invalid">Password is requred</p>
+    </div>
+    <br>
+    <div class="bottom-butttons">
+      <input type="submit" value="Register" [disabled]="!registerForm.valid">
+      <br>
+    </div>
+
+  </form>
+</div>
