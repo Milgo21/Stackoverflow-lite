@@ -10,6 +10,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { AskquestionComponent } from "./components/questions/askquestion/askquestion.component";
 import { UpdatequestionComponent } from "./components/questions/updatequestion/updatequestion.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { PostsComponent } from "./components/posts/posts.component";
+import { SinglepostComponent } from "./components/posts/singlepost/singlepost.component";
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { RegisterComponent } from "./components/register/register.component";
         LoginComponent,
         AskquestionComponent,
         UpdatequestionComponent,
-        RegisterComponent
+        RegisterComponent,
+        PostsComponent,
+        SinglepostComponent
     ]
 })
 export class AppModule { }
