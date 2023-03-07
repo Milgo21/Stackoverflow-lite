@@ -1,0 +1,27 @@
+.container{
+ background-color: #E4E3C4;
+ height: 10vh;
+ width: 99.99vw;
+ display: flex;
+ justify-content: space-between;
+
+}
+.logo{
+  width: 40%;
+  height: 110%;
+}
+.nav-links{
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+}
+a{
+  background-color: black;
+  padding: 0.5rem;
+}
+img{
+  width: 40%;
+  height: 100%;
+}
