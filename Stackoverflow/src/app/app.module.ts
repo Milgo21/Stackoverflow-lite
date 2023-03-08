@@ -12,6 +12,7 @@ import { UpdatequestionComponent } from "./components/questions/updatequestion/u
 import { RegisterComponent } from "./components/register/register.component";
 import { PostsComponent } from "./components/posts/posts.component";
 import { SinglepostComponent } from "./components/posts/singlepost/singlepost.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SinglepostComponent } from "./components/posts/singlepost/singlepost.co
         UpdatequestionComponent,
         RegisterComponent,
         PostsComponent,
-        SinglepostComponent
+        SinglepostComponent,
+        ProfileComponent
     ]
 })
 export class AppModule { }

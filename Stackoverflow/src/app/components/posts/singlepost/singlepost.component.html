@@ -9,32 +9,99 @@
       <h2>All posts</h2>
     </div>
   </div>
+<!-- Middle content -->
   <div class="middle-content">
 
     <!-- One question -->
     <div class="questions">
-      <div class="votes-ans">
-        <div class="votes">
-          <p> 3 Answers</p>
-        </div>
-        <div class="votes2">
-          <p> 2 Votes</p>
-        </div>
-      </div>
       <div class="quiz-title">
         <div class="title">
           <p>How to re-render component, using effect and Us state</p>
+        </div>
+        <div class="date-asked">
+          <p>Asked:12/2/2023</p>
+        </div>
+      </div>
+      <!--Question description  -->
+      <div class="description-trial-tags">
+        <div class="description">
+          <p>I am trying to build a python script to scrape prices from different czech eshops. I am quite successful with most of them except one - Alza.cz</p>
+        </div>
+        <div class="trial">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolores similique labore dolorem assumenda reprehenderit neque sapiente amet modi. Sequi iste porro quam sint illo quas quaerat quae omnis in. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate cupiditate sunt dolor enim quo. Dolores odit cum dolorem laboriosam est fugit atque esse consequatur quam? Non explicabo eius in nemo!</p>
         </div>
         <div class="tags">
           <h4>Javasript</h4>
           <h4>Angular</h4>
         </div>
-        <div class="username">
-          <p>Milgo21</p>
-        </div>
+
       </div>
+
     </div>
 
+    <!-- Answers and comments -->
+
+    <div class="answer">
+      <div class="answer-left">
+
+        <div class="no-of-answers">
+          <p>1 Answer</p>
+        </div>
+        <div class="ratings">
+          <div class="like">
+            ^
+          </div>
+          <div class="like-count">
+            4
+          </div>
+          <div class="dislike">
+            v
+          </div>
+        </div>
+      </div>
+      <div class="answer-right">
+        <div class="highlight">
+          <p>Highlight Answer</p>
+        </div>
+        <div class="answer-container">
+          <div class="ans-desc">
+            <p>However, with SSR, the server generates a complete HTML page that includes all of the initial content, and sends this to the client's browser. This means that the user can see the content of the page more quickly, and the page is more easily indexed by search engines.
+              SSR is especially useful for applications that require faster load times, better SEO, and more accessible content. By generating the HTML on the server-side, the initial loading time of the application is reduced, and users can see the content of the page more quickly. Additionally, search engine crawlers can more easily index the content of the page, which can improve the page's visibility in search results.
+            </p>
+          </div>
+          <div class="ans-comments">
+            <div class="comments">
+              <h4>Comments</h4>
+              <div class="comment">
+                <p>You forgot to close the script tag</p>
+                <div class="comment-username">
+                  <p>Milgo21</p>
+                </div>
+              </div>
+            </div>
+            <div class="add-comment">
+              <input type="text">
+              <button>Add comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Post your answer -->
+    <div class="post-answer">
+      <div class="post-title">
+        <p>Your answer</p>
+      </div>
+      <div class="post-input">
+        <input type="text" placeholder="your answer bruvv" id="post">
+      </div>
+      <div class="post-button">
+        <button>POST ANSWER </button>
+      </div>
+    </div>
   </div>
 
   <!-- Right bar -->
