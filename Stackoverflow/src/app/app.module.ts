@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { RegisterComponent } from "./components/register/register.component";
 import { PostsComponent } from "./components/posts/posts.component";
 import { SinglepostComponent } from "./components/posts/singlepost/singlepost.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { AdminComponent } from "./components/admin/admin.component";
 
 
 @NgModule({
@@ -24,16 +26,9 @@ import { ProfileComponent } from "./components/profile/profile.component";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HeaderComponent,
         FooterComponent,
-        HomePageComponent,
-        LoginComponent,
-        AskquestionComponent,
-        UpdatequestionComponent,
-        RegisterComponent,
-        PostsComponent,
-        SinglepostComponent,
-        ProfileComponent
+        HeaderComponent,
+        HttpClientModule
     ]
 })
 export class AppModule { }

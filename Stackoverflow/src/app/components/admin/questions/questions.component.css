@@ -1,0 +1,48 @@
+.questions{
+  background-color: #E4E3C4;
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 3px;
+}
+.votes-ans{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+.votes{
+  padding: 0.2rem;
+  background-color: green;
+  color: white;
+  border-radius: 2px;
+}
+.votes2{
+  padding: 0.2rem;
+  /* background-color: green; */
+  /* color: white; */
+}
+.quiz-title{
+  width: 70%;
+}
+.tags{
+  display: flex;
+  justify-content: flex-start;
+  gap: 4%;
+}
+.delete{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 0.5rem;
+  background-color: #E53D3D;
+  border-radius: 50%;
+  margin-left: 1rem;
+  height: 70%;
+}
+.username{
+  display: flex;
+  justify-content: flex-end;
+}
