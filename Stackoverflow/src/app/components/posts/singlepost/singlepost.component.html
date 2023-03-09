@@ -5,7 +5,7 @@
       <div class="my-posts">
         <h2>My posts</h2>
     </div>
-    <div class="all-posts">
+    <div class="all-posts"  routerLink="/posts">
       <h2>All posts</h2>
     </div>
   </div>
@@ -48,14 +48,21 @@
           <p>1 Answer</p>
         </div>
         <div class="ratings">
-          <div class="like">
-            ^
+          <div class="like" title="Answer is useful">
+            <!-- <span class="material-symbols-outlined">
+              thumb_up
+              </span> -->
+              <i class="fa-solid fa-thumbs-up"></i>
           </div>
+
           <div class="like-count">
             4
           </div>
-          <div class="dislike">
-            v
+          <div class="dislike" title="Answer is as useful as a wooden frying pan">
+            <!-- <span class="material-symbols-outlined">
+              thumb_down
+              </span> -->
+              <i class="fa-solid fa-thumbs-down"></i>
           </div>
         </div>
       </div>
@@ -96,7 +103,8 @@
         <p>Your answer</p>
       </div>
       <div class="post-input">
-        <input type="text" placeholder="your answer bruvv" id="post">
+          <!-- <input type="text" placeholder="your answer bruvv" id="post"> -->
+          <textarea name="" id="" cols="30" rows="10" placeholder="Your answer bazuuu"></textarea>
       </div>
       <div class="post-button">
         <button>POST ANSWER </button>

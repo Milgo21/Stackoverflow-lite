@@ -159,11 +159,21 @@
   flex-direction: column;
   gap: 1rem;
 }
-.post-input>input{
+.post-input>textarea{
   width: 100%;
   min-height: 50vh;
   background-color: #E4E3C4;
   border: none;
+}
+.fa-thumbs-down{
+  color: #2F58CD;
+  /* background-color: #2F58CD; */
+  font-size: 3rem;
+}
+.fa-thumbs-up{
+  color: red;
+  font-size: 3rem;
+  /* background-color: #2F58CD; */
 }
 .post-button > button{
   background-color: #2F58CD;

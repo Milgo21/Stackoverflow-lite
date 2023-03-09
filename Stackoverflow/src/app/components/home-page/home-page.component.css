@@ -1,9 +1,11 @@
+
 .container{
 /* background-color: red; */
 display: flex;
 flex-direction: column;
 width: 95%;
 align-items: center;
+border: 2px solid red;
 }
 .top-page{
   width: 80%;
