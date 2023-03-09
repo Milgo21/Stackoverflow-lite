@@ -40,6 +40,7 @@ border: 2px solid red;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+ 
 }
 .stat{
   border-left: solid 2px white;
