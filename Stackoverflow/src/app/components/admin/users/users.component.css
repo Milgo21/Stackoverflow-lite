@@ -1,0 +1,41 @@
+.container{
+  gap: 1.5rem;
+}
+.appuser{
+  background-color: #E4E3C4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  margin-bottom: 1.5rem;
+}
+.person-name{
+  width: 30%;
+}
+.username{
+  width: 30%;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+}
+.delete{
+  width: 30%;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* color: white; */
+  /* padding: 0.5rem; */
+  color: #E53D3D;
+  font-size: 2rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}
+.fa-xmark{
+  cursor: pointer;
+}

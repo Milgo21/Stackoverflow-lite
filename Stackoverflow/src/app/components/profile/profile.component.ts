@@ -10,4 +10,22 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileComponent {
 
+
+
+  filterbyAnswers(){
+    console.log("majibu");
+
+  }
+  allQuestions(){
+    console.log("zote");
+
+  }
+  filterbyDate(){
+    console.log("tarehe");
+
+  }
+  deleteQuestion(){
+    console.log("mbwa");
+
+  }
 }

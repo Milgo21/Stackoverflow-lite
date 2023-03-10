@@ -27,5 +27,46 @@ img{
   display: flex;
   flex-direction: column;
   color: #A7AF70;
+  /* border: solid 2px  red; */
+  /* margin-bottom: 1rem; */
 
+}
+@media only screen and (max-width: 724px) {
+.container2{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.logo{
+  width: 80%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin-top: -3rem;
+
+}
+.stack-overflow, .policies, .channels{
+  width: 80%;
+  height: auto;
+  padding: 0.5rem;
+  font-size: xx-large;
+  /* display: flex;
+  flex-direction: column;
+  color: #A7AF70;
+  border: solid 2px  red; */
+  margin-bottom: 1rem;
+
+}
+}
+
+@media only screen and (max-width: 724px) {
+  .stack-overflow, .policies, .channels{
+
+    font-size: large;
+
+
+  }
 }

@@ -9,13 +9,15 @@
     <br>
     <div>
       <label for="description">Question description</label><br>
-      <input type="text" formControlName="description">
+      <textarea name="" id="" cols="30" rows="10" formControlName="description"></textarea>
+      <!-- <input type="text" > -->
       <p *ngIf="updateForm.get('description')!.touched && updateForm.get('description')!.invalid">description is requred</p>
     </div>
     <br>
     <div>
       <label for="trial">What you tried </label><br>
-      <input type="text" formControlName="trial">
+      <!-- <input type="text" > -->
+      <textarea name="" id="" cols="30" rows="10" formControlName="trial"></textarea>
       <p *ngIf="updateForm.get('trial')!.touched && updateForm.get('trial')!.invalid">Trial is required</p>
     </div>
     <br>

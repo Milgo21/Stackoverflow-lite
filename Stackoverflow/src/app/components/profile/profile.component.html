@@ -58,6 +58,24 @@
         <p>Next</p>
       </div>
     </div>
+    <!-- Filter posts -->
+    <div class="filterby">
+      <div>
+
+      </div>
+      <div class="prev">
+        <p>Fliter posts by:</p>
+      </div>
+      <div class="page-no allquizs" (click)="allQuestions()">
+      <p>All quizs</p>
+      </div>
+      <div class="next answerfilter" (click)="filterbyAnswers()">
+        <p>Answers</p>
+      </div>
+      <div class="next datefilter" (click)="filterbyDate()">
+        <p>Most Recent</p>
+      </div>
+    </div>
 
     <!-- One question -->
     <div class="questions">
@@ -82,7 +100,8 @@
         </div>
       </div>
       <div class="delete">
-        <h1>x</h1>
+        <!-- <h1>x</h1> -->
+        <i class="fa-solid fa-xmark" (click)="deleteQuestion()"></i>
       </div>
     </div>
 
@@ -109,7 +128,7 @@
         </div>
       </div>
       <div class="delete">
-        <h1>x</h1>
+        <i class="fa-solid fa-xmark"></i>
       </div>
     </div>
 
@@ -136,7 +155,9 @@
         </div>
       </div>
       <div class="delete">
-        <h1>x</h1>
+        <!-- <h1>x</h1> -->
+        <i class="fa-solid fa-xmark"></i>
+        <!-- <i class="fa-solid fa-trash"></i> -->
       </div>
     </div>
 

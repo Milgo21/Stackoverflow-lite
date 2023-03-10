@@ -9,5 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-
+  deleteUser(){
+    console.log("Kanyaga kubwa kubwa");
+  }
 }

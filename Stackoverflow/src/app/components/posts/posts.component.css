@@ -1,12 +1,13 @@
 .content{
   display: flex;
   justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .container{
   width: 90%;
   display: flex;
   justify-content: space-between;
-  margin-top: 5rem;
 
 }
 .left-bar{
@@ -71,11 +72,13 @@
 }
 .quiz-title{
   width: 70%;
+  cursor: pointer;
 }
 .tags{
   display: flex;
   justify-content: flex-start;
   gap: 4%;
+  flex-wrap: wrap;
 }
 .username{
   display: flex;
@@ -86,14 +89,44 @@
   width: 15%;
   background-color: #E4E3C4;
   padding:2rem;
-  height: 30%;
+  height: fit-content;
+  border: 2px solid red;
 }
 .ask,.plus{
   padding: 0.5rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 .plus{
   display: flex;
   justify-content: center;
-  font-size: larger;
+  font-size: 2rem;
+  cursor: pointer;
+}
+@media only screen and (max-width: 827px) {
+  .left-bar{
+    width: 15%;
+    background-color: #E4E3C4;
+    padding: 1rem;
+  }
+  .title{
+    padding: 0.2rem;
+  }
+  .right-bar{
+    width: 15%;
+    background-color: #E4E3C4;
+    padding:0.2rem;
+  }
+  .votes-ans{
+    width: 32%;
+  }
+}
+@media only screen and (max-width: 574px) {
+  .ask{
+    display: none;
+  }
+  .left-bar{
+    padding: 0rem;
+    border: solid 2px #E4E3C4;
+  }
 }

@@ -7,15 +7,13 @@
       <p *ngIf="loginForm.get('email')!.touched && loginForm.get('email')!.invalid">Please enter a valid email</p>
     </div>
     <div>
-      <label for="password">Password</label><br>
+      <label for="password">Password</label>
       <input type="text" formControlName="password">
       <p *ngIf="loginForm.get('password')!.touched && loginForm.get('password')!.invalid">Password is requred</p>
     </div>
     <br>
     <div class="bottom-butttons">
       <input type="submit" value="Login" [disabled]="!loginForm.valid">
-      <br>
-      <br>
       <input type="button" value="Forgot password">
     </div>
 

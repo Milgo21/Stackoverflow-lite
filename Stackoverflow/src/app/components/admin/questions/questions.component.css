@@ -3,6 +3,10 @@
   display: flex;
   padding: 0.5rem;
   border-radius: 3px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  margin-bottom: 1.5rem;
 }
 .votes-ans{
   width: 20%;
@@ -29,15 +33,20 @@
 .tags{
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 4%;
+}
+.fa-xmark{
+  cursor: pointer;
 }
 .delete{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  /* color: white; */
   padding: 0.5rem;
-  background-color: #E53D3D;
+  color: #E53D3D;
+  font-size: 2rem;
   border-radius: 50%;
   margin-left: 1rem;
   height: 70%;
@@ -45,4 +54,26 @@
 .username{
   display: flex;
   justify-content: flex-end;
+}
+@media only screen and (max-width: 827px) {
+  .left-bar{
+    width: 20%;
+    height: fit-content;
+    background-color: #E4E3C4;
+    padding: 1rem;
+  }
+  .title{
+    padding: 0.2rem;
+  }
+  .right-bar{
+    width: 15%;
+    background-color: #E4E3C4;
+    padding:0.2rem;
+  }
+  .votes-ans{
+    width: 32%;
+  }
+  .posts-stat{
+    height: fit-content;
+  }
 }

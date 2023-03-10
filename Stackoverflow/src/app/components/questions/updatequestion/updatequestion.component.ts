@@ -20,6 +20,7 @@ ngOnInit(): void {
   })
 }
 updateQuestion(){
+  console.log(this.updateForm);
 
 }
 }

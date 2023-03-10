@@ -7,11 +7,12 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 5rem;
+  margin-bottom: 5rem;
 
 }
 .left-bar{
   width: 15%;
-  height: 40vh;
+  height: fit-content;
   background-color: #E4E3C4;
   padding: 2rem;
   display: flex;
@@ -61,13 +62,16 @@
 }
 .posts-stat{
   width: 25%;
-  height: 15vh;
+  height: 20vh;
   padding: 0.5rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 #posts{
   background-color: #E53D3D;
@@ -82,6 +86,16 @@
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+.filterby{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.allquizs,.answerfilter, .datefilter{
+  cursor: pointer;
 }
 .prev, .next ,.page-no{
   background-color: #E4E3C4;
@@ -103,4 +117,26 @@
   display: flex;
   justify-content: center;
   font-size: larger;
+}
+@media only screen and (max-width: 827px) {
+  .left-bar{
+    width: 20%;
+    height: fit-content;
+    background-color: #E4E3C4;
+    padding: 1rem;
+  }
+  .title{
+    padding: 0.2rem;
+  }
+  .right-bar{
+    width: 15%;
+    background-color: #E4E3C4;
+    padding:0.2rem;
+  }
+  .votes-ans{
+    width: 32%;
+  }
+  .posts-stat{
+    height: fit-content;
+  }
 }

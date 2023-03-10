@@ -10,4 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class QuestionsComponent {
 
+  deleteQuestion(){
+    console.log("Sasa hii ni swali gani tena");
+
+  }
 }
