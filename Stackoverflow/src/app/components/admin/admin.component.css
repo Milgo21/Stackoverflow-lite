@@ -55,19 +55,21 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap:wrap;
 }
 .stat-title{
   border-top: 3px solid white;
   padding: 0.4rem;
 }
 .posts-stat{
-  width: 25%;
+  width: 13rem;
   height: 20vh;
   padding: 0.5rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-bottom: 0.8rem;
   align-items: center;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
