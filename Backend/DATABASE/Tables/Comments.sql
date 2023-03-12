@@ -1,0 +1,14 @@
+USE [Stackoverflow]
+GO
+CREATE TABLE Comments(
+id VARCHAR(255) PRIMARY KEY,
+comment VARCHAR(MAX) NOT NULL,
+answer_id VARCHAR(255) NOT NULL,
+user_id VARCHAR(255) NOT NULL,
+is_deleted BIT NOT NULL DEFAULT 0,
+date_created DATE NOT NULL DEFAULT GETDATE(),
+FOREIGN KEY(answer_id) REFERENCES Answers(id),
+FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+SELECT * FROM Comments
+DROP TABLE Comments

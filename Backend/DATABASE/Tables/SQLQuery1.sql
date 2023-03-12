@@ -1,0 +1,13 @@
+CREATE DATABASE Stackoverflow
+USE [Stackoverflow]
+GO
+CREATE TABLE Users(
+id VARCHAR(255) PRIMARY KEY,
+username VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+is_admin BIT NOT NULL DEFAULT 0,
+date_created DATE NOT NULL DEFAULT GETDATE(),
+welcome_sent BIT NOT NULL DEFAULT 0
+);
+--SELECT * FROM Users--
