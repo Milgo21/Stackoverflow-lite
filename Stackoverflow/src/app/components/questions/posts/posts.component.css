@@ -90,7 +90,7 @@
   background-color: #E4E3C4;
   padding:2rem;
   height: fit-content;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 .ask,.plus{
   padding: 0.5rem;

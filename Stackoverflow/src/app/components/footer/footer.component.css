@@ -1,6 +1,6 @@
 .container2{
   height: 30vh;
-  /* width: 100vw; */
+  width: 100%;
   padding: 2rem;
   background-color: #E4E3C4;
   display: flex;
@@ -9,7 +9,7 @@
   /* margin-top: auto; */
   position: absolute;
   /* border: 2px solid green; */
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 .logo{
   width: 40%;
