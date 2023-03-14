@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HighlightDirective } from 'src/app/Directives/highlight.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HighlightDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })

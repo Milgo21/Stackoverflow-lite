@@ -11,5 +11,5 @@ date_created DATE NOT NULL DEFAULT GETDATE(),
 FOREIGN KEY(user_id) REFERENCES Users(id),
 FOREIGN KEY (question_id) REFERENCES Question(id)
 );
-SELECT * FROM Answers
 DROP  TABLE Answers
+SELECT * FROM Answers

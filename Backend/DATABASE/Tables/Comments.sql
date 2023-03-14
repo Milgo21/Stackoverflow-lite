@@ -10,5 +10,5 @@ date_created DATE NOT NULL DEFAULT GETDATE(),
 FOREIGN KEY(answer_id) REFERENCES Answers(id),
 FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-SELECT * FROM Comments
 DROP TABLE Comments
+SELECT * FROM Comments

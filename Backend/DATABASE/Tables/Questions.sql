@@ -13,3 +13,4 @@ FOREIGN KEY (user_id)  REFERENCES Users(id)
 
 );
 SELECT * FROM Question
+DROP TABLE Question
