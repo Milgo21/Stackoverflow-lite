@@ -60,10 +60,15 @@ export const registerUser =async (req:ExtendedRequest,res:Response) => {
 export const login =async (req:ExtendedRequest, res: Response) => {
     try {
         const {email, password} = req.body
+        
         if (_db.checkConnection() as unknown as boolean) {
-            const loggingUser:any = await _db.exec('getUserByEmail',{email:email});
-            if(loggingUser.length > 0){
-                const validPassword = await bcrypt.compare(password, loggingUser[0].password)
+            const loggingUser = (await _db.exec('getUserByEmail', { email: email})).recordset;
+            
+            if(loggingUser[0]){
+                // Compare the two passwords
+                const validPassword = await bcrypt.compare(password, loggingUser[0].password);
+
+
                 if(validPassword){
                     const token = Jwt.sign(loggingUser[0], process.env.JWT_SECRET as string, {expiresIn:'1d'})
                     res.status(200).json({"new token": token , loggingUser})
@@ -75,10 +80,94 @@ export const login =async (req:ExtendedRequest, res: Response) => {
                 res.status(500).json({message: "Email not found"})
             }
         }else{
-            res.status(500).json({message: "Cannot connect to the database a this moment"})
+            res.status(500).json({message: "Cannot connect to the database at this moment"})
         }
 
+    } catch (error) {
+        
+        res.status(500).json(error)
+    }
+}
+
+
+
+// Get all users
+export const getAllUsers =async (req:ExtendedRequest, res:Response) => {
+    try {
+        if(_db.checkConnection() as unknown as boolean){
+            const users = await _db.exec('getAllUsers');
+            if (users) {
+                res.status(200).json(users)
+            } else {
+                res.status(200).json({message:"Currently there are no users"})
+            }
+        }else{
+            res.status(500).json({message:"Kindly check your database connection"})
+        }
     } catch (error) {
         res.status(500).json(error)
     }
 }
+
+// Delete a user
+
+export const deleteUser =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id = req.params.id
+        if (_db.checkConnection() as unknown as boolean) {
+            const userDeleted = await _db.exec('deleteUser', {id})
+            if (!userDeleted) {
+                res.status(500).json({message: "User is 404"})
+                
+            } else {
+                res.status(200).json({message: "User deleted successfuly"})
+            }
+        } else {
+            res.status(500).json({message:"Kindly check your database connection"})
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Get a user by id
+export const getUserById =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id = req.params.id
+        const userById:User[] = await (await _db.exec('getUserById', {id})).recordset
+        if (userById.length < 0) {
+            res.status(404).json({message: 'User is 404'})
+        } else {
+            res.status(200).json(userById[0])
+        }
+        
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Update a user
+export const updatePassword =async (req:ExtendedRequest, res:Response) => {
+    try {
+
+        const id = req.params.id
+        if (_db.checkConnection() as unknown as boolean) {
+
+            const updatedUser:User[] = await (await _db.exec('getUserById', {id})).recordset
+            if (updatedUser.length > 0) {
+                const hashedpassword = await bcrypt.hash(req.body.password,10);
+                await _db.exec('updatePassword', {id:updatedUser[0].id, password:hashedpassword})
+                res.status(200).json({message: "Password updated"})
+            }else{
+                res.status(404).json({message: 'User is 404'})
+            }
+            
+        } else {
+            res.status(500).json({message:"Kindly check your database connection"})
+        }
+
+    } catch (error) {
+        
+    }
+}
+

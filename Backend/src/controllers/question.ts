@@ -1,0 +1,101 @@
+import {Request, Response, RequestHandler} from 'express'
+import Jwt from "jsonwebtoken";
+import bcrypt from 'bcrypt'
+import {v4 as uuid} from 'uuid'
+import _db from "../databaseHelpers"
+import { Question, QuestionAsked } from '../models/questioninterface';
+import {QuestionValidator} from '../helpers/question'
+
+
+interface ExtendedRequest extends Request{
+    body:{question_title:string,question_desc:string , question_trial:string , question_tags:string , user_id:string
+    },
+    // params:{id:String}
+    // info:Question
+    }
+
+
+
+// Ask a question
+export const askQuestion =async (req:ExtendedRequest, res:Response ) => {
+    try {
+        const id = uuid()
+        const {question_title,question_desc , question_trial , question_tags , user_id} = req.body
+        const question:QuestionAsked ={
+            id:id,
+            question_title,
+            question_desc,
+            question_trial ,
+            question_tags,
+            user_id
+        }
+        const {error} = QuestionValidator.validate(req.body)
+            if (error)
+                return res.status(422).json(error.details[0].message);
+        const newQuestion = await _db.exec("insertOrUpdateQuestion",{id,question_title,question_desc , question_trial , question_tags , user_id})
+        if (newQuestion) {
+            
+            res.status(201).json(newQuestion)
+        } else {
+            res.status(500).json({message:"Cannot ask question"})
+        }
+
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Get all questions
+
+export const getQuestions =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const questions = await _db.exec("getAllQuestions")
+        if (questions) {
+            res.status(200).json(questions)
+        } else {
+            res.status(200).json({message:"There are no questions"})
+        }
+
+
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Get a single question 
+
+export const getSingleQuestion =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id = req.params.id
+        const singleQuestion = await _db.exec('getQuestionById',{id});
+        if (!singleQuestion) {
+            res.status(500).json({message:"Enter a valid id"})
+        } else {
+            res.status(200).json(singleQuestion)
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Delete a question 
+
+export const deleteQuestion =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id =req.params.id
+        const questionFound = await _db.exec('getQuestionById',{id});
+        if (!questionFound) {
+            await _db.exec('deleteQuestion',{id})
+            res.status(200).json({message:"Question deleted succesfully"})
+        } else {
+            res.status(404).json({message: "Question is 404, enter valid id"})
+        }
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
