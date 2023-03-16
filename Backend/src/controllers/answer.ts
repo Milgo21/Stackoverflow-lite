@@ -2,7 +2,6 @@ import {Request, Response} from 'express'
 import {v4 as uuid} from 'uuid'
 import _db from "../databaseHelpers"
 import { answerValidator } from '../helpers/answer';
-import { Question } from '../models/questioninterface';
 
 
 interface ExtendedRequest extends Request{
@@ -71,6 +70,91 @@ export const getAnswersByQuestionId =async (req:ExtendedRequest, res:Response) =
         } else {
                 res.status(404).json({message: "Question does not exist"})
         }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Get answers by answer user id
+
+export const getAnswersByUserId =async (req:ExtendedRequest,res:Response) => {
+
+    try {
+        const id = req.params.id
+        const user_id = req.params.id
+        const userFound = await (await _db.exec('getUserById', {id})).recordset
+        if (userFound) {
+            const answers = (await _db.exec('getAnswersByUserId', {user_id})).recordset
+            if (answers) {
+                res.status(200).json(answers)
+            } else {
+                res.status(404).json({message: "There are no given answers by this user"})
+            }
+        } else {
+            res.status(404).json({message: "User does not exist"})
+        }
+        
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Get answer by answer id
+
+export const getAnswerById =async (req:ExtendedRequest, res:Response) => {
+    try {
+        
+        const id = req.params.id
+        const answer = await (await _db.exec('getAnswerById',{id})).recordset
+        if(answer.length > 0){
+            res.status(200).json(answer)
+        }else{
+
+            res.status(404).json({message:"Answer not found"})
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Highlight an answer 
+
+export const highlightAnswer =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id = req.params.id
+        const answerFound = (await _db.exec('getAnswerById', {id})).recordset
+        // console.log(answerFound);
+        
+        if (answerFound.length > 0) {
+            const highlight = await _db.exec('highlightAnswer', {id})
+            if (highlight) {
+                res.status(200).json({message:"Answer highlighted"})
+            } else {
+                res.status(200).json({messages:"Cannot highlight at the moment"})
+            }
+        } else {
+            res.status(404).json({message: "No such answer exists"})
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Delete an answer 
+
+export const deleteAnswer =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id =req.params.id
+        const answerFound = await (await _db.exec('getAnswerById',{id})).recordset
+        if (answerFound.length > 0) {
+            await _db.exec('deleteAnswer', {id})
+            res.status(200).json({message: "Answer has been deleted"})
+        } else {
+            res.status(404).json({message: "Answer does not exist"})
+        }
+
     } catch (error) {
         res.status(500).json(error)
     }

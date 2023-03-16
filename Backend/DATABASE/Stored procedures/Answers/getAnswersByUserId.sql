@@ -9,4 +9,4 @@ END
 
 USE [Stackoverflow]
 GO
-EXEC getAnwersByUserId '6000'
+EXEC getAnswersByUserId '6000'
