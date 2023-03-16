@@ -14,7 +14,6 @@ Content-Type: application/json
 {
     "email":"mambet23421@gmail.com",
     "password":"Tryme@123."
-  
 }
 
 
@@ -57,3 +56,30 @@ Content-Type: application/json
 
 ### Get a single question
 GET http://localhost:4000/auth/question/37d0bee2-7b72-4a76-a8c9-6b8e41ad0b1a
+
+### Update a question
+POST http://localhost:4000/auth/question/7
+Content-Type: application/json
+{  
+        "question_title": "div",
+        "question_desc": "How to center a div proper",
+        "question_trial": "gave it width and h && margin:auto",
+        "question_tags": "html"
+}
+
+### Answer a question
+POST http://localhost:4000/auth/answer 
+Content-Type: application/json
+{  
+    "answer":"Use px,rem for the length",
+    "question_id":"7",
+    "user_id":"6000"
+}
+
+### Get all answers
+GET http://localhost:4000/auth/answer
+
+
+
+### Get all answers by question id
+GET http://localhost:4000/auth/answer/question/80

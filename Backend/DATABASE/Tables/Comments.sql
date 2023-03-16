@@ -1,5 +1,6 @@
 USE [Stackoverflow]
 GO
+DROP TABLE Comments
 CREATE TABLE Comments(
 id VARCHAR(255) PRIMARY KEY,
 comment VARCHAR(MAX) NOT NULL,
@@ -10,5 +11,4 @@ date_created DATE NOT NULL DEFAULT GETDATE(),
 FOREIGN KEY(answer_id) REFERENCES Answers(id),
 FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-DROP TABLE Comments
 SELECT * FROM Comments

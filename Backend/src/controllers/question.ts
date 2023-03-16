@@ -1,10 +1,8 @@
-import {Request, Response, RequestHandler} from 'express'
-import Jwt from "jsonwebtoken";
-import bcrypt from 'bcrypt'
+import {Request, Response} from 'express'
 import {v4 as uuid} from 'uuid'
 import _db from "../databaseHelpers"
-import { Question, QuestionAsked } from '../models/questioninterface';
-import {QuestionValidator} from '../helpers/question'
+import {QuestionValidator, updateQuestionValidator} from '../helpers/question'
+import { Question } from '../models/questioninterface';
 
 
 interface ExtendedRequest extends Request{
@@ -21,14 +19,14 @@ export const askQuestion =async (req:ExtendedRequest, res:Response ) => {
     try {
         const id = uuid()
         const {question_title,question_desc , question_trial , question_tags , user_id} = req.body
-        const question:QuestionAsked ={
-            id:id,
-            question_title,
-            question_desc,
-            question_trial ,
-            question_tags,
-            user_id
-        }
+        // const question:QuestionAsked ={
+        //     id:id,
+        //     question_title,
+        //     question_desc,
+        //     question_trial ,
+        //     question_tags,
+        //     user_id
+        // }
         const {error} = QuestionValidator.validate(req.body)
             if (error)
                 return res.status(422).json(error.details[0].message);
@@ -95,6 +93,27 @@ export const deleteQuestion =async (req:ExtendedRequest, res:Response) => {
             res.status(404).json({message: "Question is 404, enter valid id"})
         }
 
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Update a single question
+
+export const updateQuestion =async (req:ExtendedRequest, res:Response) => {
+    try {
+        const id = req.params.id
+        const {question_title,question_desc , question_trial , question_tags } = req.body
+        const {error} = updateQuestionValidator.validate(req.body)
+        if (error)
+            return res.status(422).json(error.details[0].message);
+            const questionFound:Question = await (await _db.exec('getQuestionById',{id})).recordset[0];
+        if (!questionFound) {
+            res.status(404).json({message: "Question is 404, cannot update a question that is absent"})
+        } else {
+            await _db.exec('updateQuestion',{id,question_title,question_desc , question_trial , question_tags })
+            res.status(200).json({message:"Question updated succesfully"})
+        }
     } catch (error) {
         res.status(500).json(error)
     }
