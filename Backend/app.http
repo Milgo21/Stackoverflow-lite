@@ -14,7 +14,6 @@ Content-Type: application/json
 {
     "email":"mambet23421@gmail.com",
     "password":"Tryme@123."
-  
 }
 
 
@@ -57,3 +56,71 @@ Content-Type: application/json
 
 ### Get a single question
 GET http://localhost:4000/auth/question/37d0bee2-7b72-4a76-a8c9-6b8e41ad0b1a
+
+### Update a question
+POST http://localhost:4000/auth/question/7
+Content-Type: application/json
+{  
+        "question_title": "div",
+        "question_desc": "How to center a div proper",
+        "question_trial": "gave it width and h && margin:auto",
+        "question_tags": "html"
+}
+
+### Answer a question
+POST http://localhost:4000/auth/answer 
+Content-Type: application/json
+{  
+    "answer":"Use px,rem for the length",
+    "question_id":"7",
+    "user_id":"6000"
+}
+
+### Get all answers
+GET http://localhost:4000/auth/answer
+
+
+
+### Get all answers by question id
+GET http://localhost:4000/auth/answer/question/80
+
+### Get single answer by its id
+GET http://localhost:4000/auth/answer/45
+
+### Get answers by user id
+GET http://localhost:4000/auth/answer/user/6000
+
+
+
+### Highlight an answer
+PUT http://localhost:4000/auth/answer/highlight/b0045cc4-09df-4635-909c-67f2f3de4f5d
+
+### Delete answer
+DELETE http://localhost:4000/auth/answer/456
+
+
+### Add comment
+POST http://localhost:4000/auth/comment
+Content-Type: application/json
+{  
+    "comment":"Good answettttttttttttttttttttttttttttt",
+    "answer_id":"b0045cc4-09df-4635-909c-67f2f3de4f5d",
+    "user_id":"2527752a-1633-4b94-87da-a5bbdea6126e"
+}
+### Get comments based on an answerid
+GET http://localhost:4000/auth/comment/answer/b0045cc4-09df-4635-909c-67f2f3de4f5d
+
+### Get a single comment 
+GET http://localhost:4000/auth/comment/396c4569-434c-4438-ae33-b92eb12268ce
+
+
+### Get all comments
+GET http://localhost:4000/auth/comment
+
+
+### Delete a single comment 
+DELETE http://localhost:4000/auth/comment/396c4569-434c-4438-ae33-b92eb12268ce
+
+
+### Get comments made by a single user
+GET http://localhost:4000/auth/comment/user/2527752a-1633-4b94-87da-a5bbdea6126e
