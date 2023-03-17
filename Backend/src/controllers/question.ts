@@ -30,7 +30,7 @@ export const askQuestion =async (req:ExtendedRequest, res:Response ) => {
         const {error} = QuestionValidator.validate(req.body)
             if (error)
                 return res.status(422).json(error.details[0].message);
-        const newQuestion = await _db.exec("insertOrUpdateQuestion",{id,question_title,question_desc , question_trial , question_tags , user_id})
+        const newQuestion = await (await _db.exec("insertOrUpdateQuestion",{id,question_title,question_desc , question_trial , question_tags , user_id})).recordset[0]
         if (newQuestion) {
             
             res.status(201).json(newQuestion)
@@ -49,7 +49,7 @@ export const askQuestion =async (req:ExtendedRequest, res:Response ) => {
 
 export const getQuestions =async (req:ExtendedRequest, res:Response) => {
     try {
-        const questions = await _db.exec("getAllQuestions")
+        const questions = (await _db.exec("getAllQuestions")).recordset
         if (questions) {
             res.status(200).json(questions)
         } else {
@@ -68,7 +68,7 @@ export const getQuestions =async (req:ExtendedRequest, res:Response) => {
 export const getSingleQuestion =async (req:ExtendedRequest, res:Response) => {
     try {
         const id = req.params.id
-        const singleQuestion = await _db.exec('getQuestionById',{id});
+        const singleQuestion = await (await _db.exec('getQuestionById',{id})).recordset[0];
         if (!singleQuestion) {
             res.status(500).json({message:"Enter a valid id"})
         } else {
