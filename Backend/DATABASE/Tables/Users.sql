@@ -9,7 +9,14 @@ password VARCHAR(255) NOT NULL,
 is_deleted BIT NOT NULL DEFAULT 0,
 is_admin BIT NOT NULL DEFAULT 0,
 date_created DATE NOT NULL DEFAULT GETDATE(),
-welcome_sent BIT NOT NULL DEFAULT 0
+welcome_sent BIT NOT NULL DEFAULT 0,
+forgot_sent BIT NOT NULL DEFAULT 0
 );
 SELECT * FROM Users
 DROP TABLE Users
+
+
+USE [Stackoverflow]
+GO
+ALTER TABLE Users 
+ADD forgot_sent BIT NOT NULL DEFAULT 0
