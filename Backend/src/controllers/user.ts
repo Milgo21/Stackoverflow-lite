@@ -31,7 +31,7 @@ export const registerUser =async (req:ExtendedRequest,res:Response) => {
         }
     if (_db.checkConnection() as unknown as boolean){
         const registeredUser = await _db.exec('insertOrUpdateUser', {id,username,email,password:hashedpassword})
-        console.log(registeredUser);
+        // console.log(registeredUser);
         if(registeredUser){
             const token = Jwt.sign(newUser, process.env.JWT_SECRET as string, {expiresIn: '1d'});
             res.status(200).json({status:"User registered successfully",
@@ -50,7 +50,7 @@ export const registerUser =async (req:ExtendedRequest,res:Response) => {
 
 
     } catch (error) {
-        console.log('error');
+        console.log('error 2');
         
     }
 }
@@ -85,7 +85,7 @@ export const login =async (req:ExtendedRequest, res: Response) => {
 
     } catch (error) {
         
-        res.status(500).json(error)
+        res.status(500).json(error +'2')
     }
 }
 
