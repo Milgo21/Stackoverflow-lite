@@ -18,5 +18,7 @@ DROP TABLE Users
 
 USE [Stackoverflow]
 GO
+SELECT * FROM Users
+DELETE FROM Users WHERE id = '0e90992a-610b-4636-a391-68306853dd5e'
 ALTER TABLE Users 
 ADD forgot_sent BIT NOT NULL DEFAULT 0

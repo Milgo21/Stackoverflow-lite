@@ -3,9 +3,9 @@ POST http://localhost:4000/auth/users/register
 Content-Type: application/json
 
 {
-    "username":"5mamba",
-    "email":"fiveguys@gmail.com",
-    "password":"Tryme@123."
+    "username":"kertich",
+    "email":"kipsangkertic@gmail.com",
+    "password":"Trime@123."
 }
 
 ### Login a new user
@@ -130,15 +130,15 @@ GET http://localhost:4000/auth/comment/user/2527752a-1633-4b94-87da-a5bbdea6126e
 POST http://localhost:4000/auth/vote
 Content-Type: application/json
 {  
-    "vote":-1,
+    "vote":1,
     "answer_id":"3e741d8e-7368-4b3d-a07c-e9a7dde50439",
-    "user_id":"2527752a-1633-4b94-87da-a5bbdea6126e"
+    "user_id":"c8326240-8136-45b6-b521-2e9c008431db"
 }
 ### Get a vote by id
 GET http://localhost:4000/auth/vote/f7573086-a2ee-4f3e-859f-8bd8a586f81d
 
 ### Get all votees to a single answer
-GET http://localhost:4000/auth/vote/answer/4567
+GET http://localhost:4000/auth/vote/answer/3e741d8e-7368-4b3d-a07c-e9a7dde50439
 
 
 ### Update a vote 
