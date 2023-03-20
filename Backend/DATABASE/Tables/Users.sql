@@ -18,6 +18,7 @@ DROP TABLE Users
 
 USE [Stackoverflow]
 GO
+UPDATE Users SET welcome_sent  = 0 WHERE id = '2527752a-1633-4b94-87da-a5bbdea6126';
 SELECT * FROM Users
 DELETE FROM Users WHERE id = '0e90992a-610b-4636-a391-68306853dd5e'
 ALTER TABLE Users 

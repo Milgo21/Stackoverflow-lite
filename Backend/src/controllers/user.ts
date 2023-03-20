@@ -7,6 +7,7 @@ import path from 'path';
 import {v4 as uuid} from 'uuid'
 import _db from "../databaseHelpers";
 import { User } from "../models/users";
+import { emailValdator } from "../helpers";
 // const  _db = new DatabaseHelper()
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
@@ -141,6 +142,26 @@ export const getUserById =async (req:ExtendedRequest, res:Response) => {
             res.status(200).json(userById[0])
         }
         
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Get reset password email 
+export const sendResetPass = async (req:ExtendedRequest, res:Response) =>{
+    try {
+        const {email} = req.body
+        const {error} = emailValdator.validate(req.body)
+        if(error) 
+            return res.status(422).json(error.details[0].message);
+        const emailFound = await (await _db.exec('getUserByEmail',{email})).recordset[0];
+        if (emailFound) {
+            await _db.exec('forgotPasswordEmail',{email});
+            res.status(200).json({message: "Check your email for the password reset link"})
+        } else {
+            res.status(404).json({message: "No such email exists"})
+        }
     } catch (error) {
         res.status(500).json(error)
     }

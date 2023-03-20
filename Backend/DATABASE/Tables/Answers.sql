@@ -14,3 +14,7 @@ FOREIGN KEY(user_id) REFERENCES Users(id),
 FOREIGN KEY (question_id) REFERENCES Question(id)
 );
 DROP  TABLE Answers
+
+USE [Stackoverflow]
+GO
+UPDATE Answers SET is_sent = 0 WHERE id = 'da553744-df59-4b3c-8959-b62ee23ca4bd'

@@ -12,3 +12,6 @@ FOREIGN KEY (answer_id)  REFERENCES Answers(id)
 );
 
 DROP TABLE Votes
+USE [Stackoverflow]
+GO
+DELETE FROM Votes WHERE vote = 1
