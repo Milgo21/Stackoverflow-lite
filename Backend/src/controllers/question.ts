@@ -2,7 +2,7 @@ import {Request, Response} from 'express'
 import {v4 as uuid} from 'uuid'
 import _db from "../databaseHelpers"
 import {QuestionValidator, updateQuestionValidator} from '../helpers/question'
-import { Question } from '../models/questioninterface';
+import { Question, QuestionAsked } from '../models/questioninterface';
 
 
 interface ExtendedRequest extends Request{
@@ -15,22 +15,23 @@ interface ExtendedRequest extends Request{
 
 
 // Ask a question
-export const askQuestion =async (req:ExtendedRequest, res:Response ) => {
+export const askQuestion =async (req:Request, res:Response ) => {
     try {
         const id = uuid()
-        const {question_title,question_desc , question_trial , question_tags , user_id} = req.body
-        // const question:QuestionAsked ={
-        //     id:id,
-        //     question_title,
-        //     question_desc,
-        //     question_trial ,
-        //     question_tags,
-        //     user_id
-        // }
-        const {error} = QuestionValidator.validate(req.body)
+
+        const {question_title,question_desc , question_trial , question_tags } = req.body
+        const question:QuestionAsked ={
+            id:id,
+            question_title,
+            question_desc,
+            question_trial ,
+            question_tags,
+            user_id:req.body.user.id
+        }
+        const {error} = QuestionValidator.validate(question)
             if (error)
                 return res.status(422).json(error.details[0].message);
-        const newQuestion = await (await _db.exec("insertOrUpdateQuestion",{id,question_title,question_desc , question_trial , question_tags , user_id})).recordset[0]
+        const newQuestion = await (await _db.exec("insertOrUpdateQuestion",{id,question_title,question_desc , question_trial , question_tags , user_id:req.body.user.id})).recordset[0]
         if (newQuestion) {
             
             res.status(201).json(newQuestion)

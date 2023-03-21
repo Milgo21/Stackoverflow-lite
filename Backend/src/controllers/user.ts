@@ -35,7 +35,7 @@ export const registerUser =async (req:ExtendedRequest,res:Response) => {
         // console.log(registeredUser);
         if(registeredUser){
             const token = Jwt.sign(newUser, process.env.JWT_SECRET as string, {expiresIn: '1d'});
-            res.status(200).json({status:"User registered successfully",
+            res.status(200).json({message:"User registered successfully",
             data:{
                 token
             }
@@ -63,16 +63,16 @@ export const login =async (req:ExtendedRequest, res: Response) => {
         const {email, password} = req.body
         
         if (_db.checkConnection() as unknown as boolean) {
-            const loggingUser = (await _db.exec('getUserByEmail', { email: email})).recordset;
+            const loggingUser = (await _db.exec('getUserByEmail', { email: email})).recordset[0];
             
-            if(loggingUser[0]){
+            if(loggingUser){
                 // Compare the two passwords
-                const validPassword = await bcrypt.compare(password, loggingUser[0].password);
+                const validPassword = await bcrypt.compare(password, loggingUser.password);
 
 
                 if(validPassword){
-                    const token = Jwt.sign(loggingUser[0], process.env.JWT_SECRET as string, {expiresIn:'1d'})
-                    res.status(200).json({"new token": token , loggingUser})
+                    const token = Jwt.sign(loggingUser, process.env.JWT_SECRET as string, {expiresIn:'1d'})
+                    res.status(200).json({"token": token , loggingUser})
                 }else{
                     res.status(500).json({message: "You entered a wrong password"})
                 }
@@ -96,7 +96,7 @@ export const login =async (req:ExtendedRequest, res: Response) => {
 export const getAllUsers =async (req:ExtendedRequest, res:Response) => {
     try {
         if(_db.checkConnection() as unknown as boolean){
-            const users = await _db.exec('getAllUsers');
+            const users = (await _db.exec('getAllUsers')).recordset;
             if (users) {
                 res.status(200).json(users)
             } else {

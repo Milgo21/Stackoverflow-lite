@@ -28,7 +28,7 @@
     </div>
 
     <!-- One question -->
-    <div class="questions">
+    <div class="questions" *ngFor='let q of questions'>
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -39,20 +39,20 @@
       </div>
       <div class="quiz-title"  routerLink="/id">
         <div class="title">
-          <p>How to re-render component, using effect and Us state</p>
+          <p>{{q.question_title}}</p>
         </div>
         <div class="tags">
-          <h4>Javasript</h4>
-          <h4>Angular</h4>
+          <h4>{{q.question_tags}}</h4>
+          <!-- <h4>Angular</h4> -->
         </div>
         <div class="username">
-          <p>Milgo21</p>
+          <p>{{q.user_id}}</p>
         </div>
       </div>
     </div>
 
     <!-- Question 2 -->
-    <div class="questions">
+    <!-- <div class="questions">
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -73,10 +73,10 @@
           <p>Milgo21</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Question 3 -->
-    <div class="questions">
+    <!-- <div class="questions">
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -97,7 +97,7 @@
           <p>Milgo21</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 

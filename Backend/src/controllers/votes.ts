@@ -57,7 +57,7 @@ export const getVoteById =async (req:Request, res:Response) => {
 export const getVotestoanAnswer =async (req:Request,res:Response) => {
     try {
         const answer_id = req.params.id
-        const answerVotes = (await _db.exec('getVotesByAnswerId', { answer_id })).recordset[0]
+        const answerVotes = (await _db.exec('getVotesByAnswerId', { answer_id })).recordset
         if (answerVotes) {
             res.status(200).json(answerVotes)
         } else {

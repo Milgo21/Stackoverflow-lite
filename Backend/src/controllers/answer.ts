@@ -16,15 +16,21 @@ interface ExtendedRequest extends Request{
     }
 
 // Answer a question 
-export const answerQuestion =async (req:ExtendedRequest, res:Response) => {
+export const answerQuestion =async (req:Request, res:Response) => {
     try {
         const id = uuid()
-        const{ answer, question_id, user_id} = req.body
-        const  {error} = answerValidator.validate(req.body);
+        const{ answer, question_id} = req.body
+        const newanswer = {
+            id:id,
+            answer,
+            question_id, 
+            user_id:req.body.user.id
+        }
+        const  {error} = answerValidator.validate(newanswer);
         if (error) {
             return res.status(422).json(error.details[0].message);
         } 
-            const answered = await _db.exec('insertAnswer',{id,answer,question_id,user_id})
+            const answered = await _db.exec('insertAnswer',{id,answer,question_id,user_id:newanswer.user_id})
         if (answered) {
             res.status(200).json({message: "You answer was well received"})
         } else {

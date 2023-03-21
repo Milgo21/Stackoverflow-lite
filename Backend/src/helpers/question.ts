@@ -1,6 +1,9 @@
 import Joi, {ref} from "joi";
 
 export const QuestionValidator = Joi.object({
+    id:Joi.string().required().messages({
+        "string.empty":"Id cannot be empty"
+    }),
     question_title:Joi.string().required().messages({
         "string.empty":"Give your question a title"
     }),

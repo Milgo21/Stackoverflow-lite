@@ -1,6 +1,9 @@
 import Joi from "joi";
 
 export const answerValidator = Joi.object({
+    id:Joi.string().required().messages({
+        "string.empty":"id cannot be empty"
+    }),
     answer:Joi.string().required().messages({
         "string.empty":"Provide the answer"
     }),
