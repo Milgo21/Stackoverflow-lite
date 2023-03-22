@@ -12,15 +12,21 @@ interface ExtendedRequest extends Request{
     }
 
     // Add a new comment
-export const addComment =async (req:ExtendedRequest, res:Response) => {
+export const addComment =async (req:Request, res:Response) => {
     try {
         const id = uuid()
-        const {comment, answer_id, user_id} = req.body
-        const {error} = commentValidator.validate(req.body)
+        const {comment, answer_id} = req.body
+        const commentModel={
+            id,
+            comment,
+            answer_id,
+            user_id:req.body.user.id
+        }
+        const {error} = commentValidator.validate(commentModel)
         if(error){
             return res.status(422).json(error.details[0].message);
         }
-        const newComment = (await _db.exec('insertComment', { id, comment, answer_id, user_id })).recordset
+        const newComment = (await _db.exec('insertComment', { id, comment, answer_id, user_id:commentModel.user_id })).recordset
         if(newComment){
             res.status(200).json(newComment)
         }else{

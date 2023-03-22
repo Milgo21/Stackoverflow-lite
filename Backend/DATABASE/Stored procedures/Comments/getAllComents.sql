@@ -7,6 +7,6 @@ BEGIN
 
 END
 
--- USE [Stackoverflow]
--- GO
--- EXEC getAllComments
+USE [Stackoverflow]
+GO
+EXEC getAllComments

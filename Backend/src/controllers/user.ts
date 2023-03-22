@@ -7,6 +7,7 @@ import path from 'path';
 import {v4 as uuid} from 'uuid'
 import _db from "../databaseHelpers";
 import { User } from "../models/users";
+import { emailValdator } from "../helpers";
 // const  _db = new DatabaseHelper()
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
@@ -34,7 +35,7 @@ export const registerUser =async (req:ExtendedRequest,res:Response) => {
         // console.log(registeredUser);
         if(registeredUser){
             const token = Jwt.sign(newUser, process.env.JWT_SECRET as string, {expiresIn: '1d'});
-            res.status(200).json({status:"User registered successfully",
+            res.status(200).json({message:"User registered successfully",
             data:{
                 token
             }
@@ -62,16 +63,16 @@ export const login =async (req:ExtendedRequest, res: Response) => {
         const {email, password} = req.body
         
         if (_db.checkConnection() as unknown as boolean) {
-            const loggingUser = (await _db.exec('getUserByEmail', { email: email})).recordset;
+            const loggingUser = (await _db.exec('getUserByEmail', { email: email})).recordset[0];
             
-            if(loggingUser[0]){
+            if(loggingUser){
                 // Compare the two passwords
-                const validPassword = await bcrypt.compare(password, loggingUser[0].password);
+                const validPassword = await bcrypt.compare(password, loggingUser.password);
 
 
                 if(validPassword){
-                    const token = Jwt.sign(loggingUser[0], process.env.JWT_SECRET as string, {expiresIn:'1d'})
-                    res.status(200).json({"new token": token , loggingUser})
+                    const token = Jwt.sign(loggingUser, process.env.JWT_SECRET as string, {expiresIn:'1d'})
+                    res.status(200).json({"token": token , "is_admin":loggingUser.is_admin, loggingUser})
                 }else{
                     res.status(500).json({message: "You entered a wrong password"})
                 }
@@ -95,7 +96,7 @@ export const login =async (req:ExtendedRequest, res: Response) => {
 export const getAllUsers =async (req:ExtendedRequest, res:Response) => {
     try {
         if(_db.checkConnection() as unknown as boolean){
-            const users = await _db.exec('getAllUsers');
+            const users = (await _db.exec('getAllUsers')).recordset;
             if (users) {
                 res.status(200).json(users)
             } else {
@@ -115,13 +116,19 @@ export const deleteUser =async (req:ExtendedRequest, res:Response) => {
     try {
         const id = req.params.id
         if (_db.checkConnection() as unknown as boolean) {
-            const userDeleted = await _db.exec('deleteUser', {id})
-            if (!userDeleted) {
-                res.status(500).json({message: "User is 404"})
-                
+            const userFound:User = await (await _db.exec('getUserById', {id})).recordset[0]
+            if (!userFound) {
+                res.status(404).json({message: "Cannot delete a none existing user"})
             } else {
-                res.status(200).json({message: "User deleted successfuly"})
+                
+                    await _db.exec('deleteUser', {id})
+                    res.status(200).json({message: "User deleted successfuly"})
+                
+
             }
+
+
+
         } else {
             res.status(500).json({message:"Kindly check your database connection"})
         }
@@ -134,13 +141,33 @@ export const deleteUser =async (req:ExtendedRequest, res:Response) => {
 export const getUserById =async (req:ExtendedRequest, res:Response) => {
     try {
         const id = req.params.id
-        const userById:User[] = await (await _db.exec('getUserById', {id})).recordset
-        if (userById.length < 0) {
+        const userById:User = await (await _db.exec('getUserById', {id})).recordset[0]
+        if (!userById) {
             res.status(404).json({message: 'User is 404'})
         } else {
-            res.status(200).json(userById[0])
+            res.status(200).json(userById)
         }
         
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Get reset password email 
+export const sendResetPass = async (req:ExtendedRequest, res:Response) =>{
+    try {
+        const {email} = req.body
+        const {error} = emailValdator.validate(req.body)
+        if(error) 
+            return res.status(422).json(error.details[0].message);
+        const emailFound = await (await _db.exec('getUserByEmail',{email})).recordset[0];
+        if (emailFound) {
+            await _db.exec('forgotPasswordEmail',{email});
+            res.status(200).json({message: "Check your email for the password reset link"})
+        } else {
+            res.status(404).json({message: "No such email exists"})
+        }
     } catch (error) {
         res.status(500).json(error)
     }

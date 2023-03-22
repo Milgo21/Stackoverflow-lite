@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { QuestionService } from 'src/app/Services/Question/question.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-askquestion',
@@ -12,6 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AskquestionComponent implements OnInit{
 
   askForm!:FormGroup
+  constructor(private QuizService:QuestionService, private Route:Router){}
   ngOnInit(): void {
     this.askForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
@@ -22,6 +25,10 @@ export class AskquestionComponent implements OnInit{
   }
   askquestion(){
     console.log(this.askForm);
+    this.QuizService.askQuestion(this.askForm.value).subscribe((response)=>{
+      console.log(response);
 
+    })
+    this.Route.navigate(['posts'])
   }
 }

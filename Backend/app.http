@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "username":"kertich",
-    "email":"kipsangkertic@gmail.com",
+    "email":"ropkibetphilemon22@gmail.com",
     "password":"Trime@123."
 }
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 
 ### Delete a user
-DELETE http://localhost:4000/auth/users/35a8f9fb-4865-40af-a4cb-709cf688f306
+DELETE http://localhost:4000/auth/users/2dcd76b7-918f-457e-8ebb-b4079a01b0fb
 
 
 
@@ -28,7 +28,7 @@ GET http://localhost:4000/auth/users
 
 
 ### Get a single user by id
-GET http://localhost:4000/auth/users/6000
+GET http://localhost:4000/auth/users/2dcd76b7-918f-457e-8ebb-b4079a01b0fb
 
 
 ### Update password
@@ -45,8 +45,7 @@ Content-Type: application/json
     "question_title":"Buda456565 ",
     "question_desc":"How to post ", 
     "question_trial":"Nimejaribu sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfs",
-    "question_tags":"Node and express",
-    "user_id":"6000" 
+    "question_tags":"Node and express"
 }
 
 ### Get all questions
@@ -56,6 +55,10 @@ Content-Type: application/json
 
 ### Get a single question
 GET http://localhost:4000/auth/question/2343
+
+
+### Get full qustion details
+GET http://localhost:4000/auth/question/full/e8d7ad83-5987-429a-9d78-9e0d78091019
 
 ### Update a question
 POST http://localhost:4000/auth/question/7
@@ -70,11 +73,11 @@ Content-Type: application/json
 ### Answer a question
 POST http://localhost:4000/auth/answer 
 Content-Type: application/json
-{  
-    "answer":"Use px,rem for the length",
-    "question_id":"7",
-    "user_id":"6000"
+{
+    "answer":"Highlighted email",
+    "question_id":"e8d7ad83-5987-429a-9d78-9e0d78091019"
 }
+
 
 ### Get all answers
 GET http://localhost:4000/auth/answer
@@ -85,7 +88,7 @@ GET http://localhost:4000/auth/answer
 GET http://localhost:4000/auth/answer/question/80
 
 ### Get single answer by its id
-GET http://localhost:4000/auth/answer/45
+GET http://localhost:4000/auth/answer/da553744-df59-4b3c-8959-b62ee23ca4bd
 
 ### Get answers by user id
 GET http://localhost:4000/auth/answer/user/6000
@@ -93,7 +96,7 @@ GET http://localhost:4000/auth/answer/user/6000
 
 
 ### Highlight an answer
-PUT http://localhost:4000/auth/answer/highlight/b0045cc4-09df-4635-909c-67f2f3de4f5d
+PUT http://localhost:4000/auth/answer/highlight/2f5e6e7e-47eb-4296-9b24-13e91431db09
 
 ### Delete answer
 DELETE http://localhost:4000/auth/answer/456
@@ -104,8 +107,7 @@ POST http://localhost:4000/auth/comment
 Content-Type: application/json
 {  
     "comment":"Good answettttttttttttttttttttttttttttt",
-    "answer_id":"b0045cc4-09df-4635-909c-67f2f3de4f5d",
-    "user_id":"2527752a-1633-4b94-87da-a5bbdea6126e"
+    "answer_id":"b0045cc4-09df-4635-909c-67f2f3de4f5d"
 }
 ### Get comments based on an answerid
 GET http://localhost:4000/auth/comment/answer/b0045cc4-09df-4635-909c-67f2f3de4f5d
@@ -131,15 +133,18 @@ POST http://localhost:4000/auth/vote
 Content-Type: application/json
 {  
     "vote":1,
-    "answer_id":"3e741d8e-7368-4b3d-a07c-e9a7dde50439",
+    "answer_id":"2527752a-1633-4b94-87da-a5bbdea6126e",
     "user_id":"c8326240-8136-45b6-b521-2e9c008431db"
 }
 ### Get a vote by id
 GET http://localhost:4000/auth/vote/f7573086-a2ee-4f3e-859f-8bd8a586f81d
 
 ### Get all votees to a single answer
-GET http://localhost:4000/auth/vote/answer/3e741d8e-7368-4b3d-a07c-e9a7dde50439
-
+GET http://localhost:4000/auth/vote/answer/4567
 
 ### Update a vote 
 PATCH http://localhost:4000/auth/vote/answer/737deae1-2316-4b56-b8e5-f3c68cee06d9
+
+
+### Reset password email link
+POST http://localhost:4000/auth/users/reset

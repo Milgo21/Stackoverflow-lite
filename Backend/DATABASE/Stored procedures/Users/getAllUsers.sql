@@ -6,3 +6,6 @@ BEGIN
     Select * FROM Users WHERE is_deleted=0
 
 END
+USE [Stackoverflow]
+GO
+EXEC getAllUsers

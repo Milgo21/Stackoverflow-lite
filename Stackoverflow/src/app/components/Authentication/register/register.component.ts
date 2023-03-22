@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from 'src/app/Services/user.service';
+import { AuthenticaionService } from 'src/app/Services/auth/authenticaion.service';
+import { Router } from '@angular/router';
+import { AppState } from 'src/app/State/appState';
+import { Store } from '@ngrx/store';
+import { register } from 'src/app/State/Actions/userActions';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +16,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class RegisterComponent implements OnInit{
 registerForm!:FormGroup
-constructor(private UserService:UserService) {}
+constructor(private UserService:AuthenticaionService, private router: Router, private store: Store<AppState>) {}
 ngOnInit(): void {
   this.registerForm = new FormGroup ({
     username: new FormControl(null, [Validators.required]),
@@ -21,9 +25,14 @@ ngOnInit(): void {
 
   })
 }
-register(){
+register1(){
   console.log(this.registerForm);
-  this.UserService.register();
+  // this.UserService.registerUser(this.registerForm.value).subscribe(response =>{
+  //   console.log(response);
+
+  // })
+  this.store.dispatch(register({user:this.registerForm.value}))
+  this.router.navigate(['login']);
 
 }
 }

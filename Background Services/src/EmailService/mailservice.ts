@@ -15,7 +15,7 @@ password:string,
 is_deleted:string,
 is_admin:string,
 date_created:string,
-welcome_sent: boolean
+welcome_sent: boolean,
 forgot_sent :boolean
 }
 
@@ -25,9 +25,9 @@ const newUserMail =  async () => {
     const users: User[] = await (await pool.request().query("SELECT * FROM Users WHERE welcome_sent ='0'")).recordset
 
     for (let user of users) {
-        ejs.renderFile('C:\\Users\\felix\\OneDrive\\Desktop\\Web Development\\THEJITU\\Angular\\Stackoverflow-lite\\Background Services\\Templates\\welcomeEmail.ejs', { name: user.username }, async (error: any, html: any) => {
+        ejs.renderFile('Templates/welcomeEmail.ejs', { name: user.username }, async (error: any, html: any) => {
             // console.log("html",html);
-            console.log("error",error);
+            // console.log("error",error);
             const message = {
                 from: process.env.EMAIL,
                 to: user.email,
@@ -37,7 +37,7 @@ const newUserMail =  async () => {
 
             try {
                 await sendEmail(message)
-                await pool.request().query(`UPDATE Users SET welcome_sent ='1' WHERE id ='${user.id}'`)
+                await pool.request().query(`UPDATE Users SET welcome_sent = 1 WHERE id ='${user.id}'`)
             } catch (error) {
                 console.log(error);
 

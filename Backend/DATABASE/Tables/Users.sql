@@ -12,13 +12,16 @@ date_created DATE NOT NULL DEFAULT GETDATE(),
 welcome_sent BIT NOT NULL DEFAULT 0,
 forgot_sent BIT NOT NULL DEFAULT 0
 );
+USE [Stackoverflow]
+GO
 SELECT * FROM Users
-DROP TABLE Users
+-- DROP TABLE Users
 
 
 USE [Stackoverflow]
 GO
-SELECT * FROM Users
-DELETE FROM Users WHERE id = '0e90992a-610b-4636-a391-68306853dd5e'
-ALTER TABLE Users 
-ADD forgot_sent BIT NOT NULL DEFAULT 0
+UPDATE Users SET is_admin  = 1 WHERE id = 'e4018400-652e-4bfd-98c2-c3362c4a77ec'
+-- SELECT * FROM Users
+-- DELETE FROM Users WHERE id = '0e90992a-610b-4636-a391-68306853dd5e'
+-- ALTER TABLE Users 
+-- ADD forgot_sent BIT NOT NULL DEFAULT 0

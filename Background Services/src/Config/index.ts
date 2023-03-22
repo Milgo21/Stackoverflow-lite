@@ -26,7 +26,7 @@ export const sqlConfig = {
     }
     
 }
-console.log(process.env.DB_PWD);
+// console.log(process.env.DB_PWD);
 const checkConnection =async () => {
         try {
             const x = await mssql.connect(sqlConfig)
