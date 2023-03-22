@@ -12,7 +12,9 @@ date_created DATE NOT NULL DEFAULT GETDATE(),
 welcome_sent BIT NOT NULL DEFAULT 0,
 forgot_sent BIT NOT NULL DEFAULT 0
 );
--- SELECT * FROM Users
+USE [Stackoverflow]
+GO
+SELECT * FROM Users
 -- DROP TABLE Users
 
 

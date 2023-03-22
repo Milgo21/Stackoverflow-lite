@@ -16,5 +16,5 @@ cron.schedule('*/10 * * * * *', async() => {
 });
 app.listen(4500, ()=>{
     console.log('Background service is running on port 4500...');
-    
+
 })

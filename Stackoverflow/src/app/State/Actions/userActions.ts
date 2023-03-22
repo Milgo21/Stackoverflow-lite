@@ -3,9 +3,9 @@ import { createAction, props } from "@ngrx/store";
 import { loginnewUser, Message, LogUser, LoginSuccess} from "src/app/Interfaces/user.interface";
 
 
-export const loginUser = createAction('[loginUser]-loginUser', props<{newUser:loginnewUser}>());
+export const loginUser = createAction('[loginUser]-loginUser', props<{user:loginnewUser}>());
 export const loginUserSuccess = createAction('[loginUser]-loginUser', props<{res:LoginSuccess}>())
-export const loginFail= createAction('[loginUser]-loginUserFail',props<{error:string}>())
+export const loginFail= createAction('[loginUser]-loginUserFail',props<{errorMessage:string}>())
 
 
 export const register = createAction('[register]-register-user', props<{user:LogUser}>())

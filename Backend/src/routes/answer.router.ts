@@ -10,5 +10,5 @@ answerRouter.get('/:id', getAnswerById)
 answerRouter.delete('/:id', deleteAnswer)
 answerRouter.get('/question/:id', getAnswersByQuestionId)
 answerRouter.get('/user/:id', getAnswersByUserId)
-answerRouter.put('/highlight/:id', highlightAnswer)
+answerRouter.put('/highlight/:id', verifyToken, highlightAnswer)
 export default answerRouter

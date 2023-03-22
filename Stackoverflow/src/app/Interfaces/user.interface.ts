@@ -2,6 +2,7 @@ export interface Message{
   message:string
 }
 export interface LogUser{
+  id?:string
   username:string
   email:string
   password:string
@@ -12,10 +13,10 @@ export interface loginnewUser{
   password:string
 }
 export interface LoginSuccess{
+  username:string
+  is_admin:boolean
   message:string
   token:string
-  is_admin:boolean
-  username:string
 }
 export interface User{
   id:string

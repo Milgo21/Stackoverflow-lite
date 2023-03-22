@@ -30,9 +30,9 @@ register1(){
   // this.UserService.registerUser(this.registerForm.value).subscribe(response =>{
   //   console.log(response);
 
-  //   this.router.navigate(['']);
   // })
   this.store.dispatch(register({user:this.registerForm.value}))
+  this.router.navigate(['login']);
 
 }
 }

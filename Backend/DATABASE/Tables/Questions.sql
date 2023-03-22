@@ -9,7 +9,7 @@ question_tags VARCHAR(MAX) NOT NULL,
 user_id VARCHAR(255) NOT NULL,
 is_deleted BIT NOT NULL DEFAULT 0,
 date_created DATE NOT NULL DEFAULT GETDATE(),
-FOREIGN KEY (user_id)  REFERENCES Users(id)
+FOREIGN KEY (user_id)  REFERENCES Users(id) ON DELETE CASCADE
 
 );
 SELECT * FROM Question

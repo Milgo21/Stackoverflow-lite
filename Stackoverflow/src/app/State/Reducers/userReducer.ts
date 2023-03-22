@@ -19,11 +19,28 @@ const initialState:UserInterface={
 }
 const userSlice=createFeatureSelector<UserInterface>('user')
 
-export const nameSelector= createSelector(userSlice, state=>state.userData?.username)
+// export const nameSelector= createSelector(userSlice, state=>state.userData?.username)
 
 
 export const userReducer = createReducer<UserInterface>(
   initialState,
+
+  on(userActions.registerSuccess, (state,actions):UserInterface =>{
+    return {
+      ...state,
+      registerSuccessMessage:actions.res.message,
+      registerFailMessage:''
+    }
+  }),
+  on(userActions.registerFailure, (state,actions):UserInterface =>{
+    return {
+      ...state,
+      registerSuccessMessage:'',
+      registerFailMessage: actions.errorMessage
+    }
+  }),
+
+
 
   on(userActions.loginUserSuccess, (state,actions):UserInterface =>{
     return{
@@ -35,21 +52,8 @@ export const userReducer = createReducer<UserInterface>(
   on(userActions.loginFail, (state,actions):UserInterface =>{
     return{
       ...state,
-      errorMessage:actions.error
-    }
-  }),
-  on(userActions.registerSuccess, (state,actions):UserInterface =>{
-    return {
-      ...state,
-      errorMessage:actions.res.message,
-      registerFailMessage:""
-    }
-  }),
-  on(userActions.registerFailure, (state,actions):UserInterface =>{
-    return {
-      ...state,
-      registerFailMessage: actions.errorMessage,
-      registerSuccessMessage:''
+      errorMessage:actions.errorMessage,
+      userData:null
     }
   })
 )
