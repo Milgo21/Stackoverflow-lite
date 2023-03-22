@@ -4,10 +4,11 @@
   </div>
   <div class="nav-links">
     <a routerLink="" appHighlight>Home</a>
-    <a routerLink="login">Login</a>
-    <a routerLink="login">Logout</a>
-    <a routerLink="register">Register</a>
-    <a routerLink="posts">Posts </a>
-    <a routerLink="profile">MyProfile</a>
+    <a *ngIf="!auth.loggedin"  routerLink="login">Login</a>
+    <a *ngIf="auth.loggedin"routerLink="login" (click)="auth.logout()">Logout</a>
+    <a *ngIf="!auth.loggedin" routerLink="register">Register</a>
+    <a *ngIf="auth.loggedin" routerLink="posts">Posts </a>
+    <a *ngIf="!auth.is_admin && auth.loggedin" routerLink="profile">MyProfile</a>
+    <a routerLink="admin" *ngIf="auth.is_admin">Admin</a>
   </div>
 </div>

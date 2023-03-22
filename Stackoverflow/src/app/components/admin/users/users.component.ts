@@ -19,7 +19,9 @@ export class UsersComponent implements OnInit{
       // console.log(userss);
     })
   }
-  deleteUser(){
-    console.log("Kanyaga kubwa kubwa");
+  deleteUser(id:string){
+    this.adminservice.deleteQuestion(id).subscribe()
+    console.log(id);
+
   }
 }

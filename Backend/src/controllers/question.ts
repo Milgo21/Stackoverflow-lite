@@ -119,3 +119,20 @@ export const updateQuestion =async (req:ExtendedRequest, res:Response) => {
         res.status(500).json(error)
     }
 }
+
+
+// Get full question details 
+
+export const getSIngleQuestionFullDetails =async (req:Request, res:Response) => {
+    try {
+        const question_id = req.params.id
+        const fullq = (await _db.exec('GetQuestionDetails', { question_id })).recordset
+        if (fullq.length < 1) {
+            res.status(404).json({message: "Question is 404, cannot get details"})
+        } else {
+            res.status(200).json(fullq)
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}

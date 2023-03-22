@@ -1,6 +1,6 @@
 import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './State/Reducers/userReducer';
 import { UserEffects } from './State/Effects/userEffects';
+import { TokenInterceptorService } from './Services/token/token-interceptor.service';
 
 
 
@@ -18,7 +19,7 @@ import { UserEffects } from './State/Effects/userEffects';
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -30,5 +31,8 @@ import { UserEffects } from './State/Effects/userEffects';
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
         EffectsModule.forRoot([UserEffects])
     ]
+    // providers:[],
+
+
 })
 export class AppModule { }

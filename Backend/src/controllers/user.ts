@@ -72,7 +72,7 @@ export const login =async (req:ExtendedRequest, res: Response) => {
 
                 if(validPassword){
                     const token = Jwt.sign(loggingUser, process.env.JWT_SECRET as string, {expiresIn:'1d'})
-                    res.status(200).json({"token": token , loggingUser})
+                    res.status(200).json({"token": token , "is_admin":loggingUser.is_admin, loggingUser})
                 }else{
                     res.status(500).json({message: "You entered a wrong password"})
                 }
@@ -116,13 +116,19 @@ export const deleteUser =async (req:ExtendedRequest, res:Response) => {
     try {
         const id = req.params.id
         if (_db.checkConnection() as unknown as boolean) {
-            const userDeleted = await _db.exec('deleteUser', {id})
-            if (!userDeleted) {
-                res.status(500).json({message: "User is 404"})
-                
+            const userFound:User = await (await _db.exec('getUserById', {id})).recordset[0]
+            if (!userFound) {
+                res.status(404).json({message: "Cannot delete a none existing user"})
             } else {
-                res.status(200).json({message: "User deleted successfuly"})
+                
+                    await _db.exec('deleteUser', {id})
+                    res.status(200).json({message: "User deleted successfuly"})
+                
+
             }
+
+
+
         } else {
             res.status(500).json({message:"Kindly check your database connection"})
         }
@@ -135,11 +141,11 @@ export const deleteUser =async (req:ExtendedRequest, res:Response) => {
 export const getUserById =async (req:ExtendedRequest, res:Response) => {
     try {
         const id = req.params.id
-        const userById:User[] = await (await _db.exec('getUserById', {id})).recordset
-        if (userById.length < 0) {
+        const userById:User = await (await _db.exec('getUserById', {id})).recordset[0]
+        if (!userById) {
             res.status(404).json({message: 'User is 404'})
         } else {
-            res.status(200).json(userById[0])
+            res.status(200).json(userById)
         }
         
     } catch (error) {

@@ -37,7 +37,7 @@
           <p> 2 Votes</p>
         </div>
       </div>
-      <div class="quiz-title"  routerLink="/id">
+      <div class="quiz-title"  [routerLink]="['/id',q.id]">
         <div class="title">
           <p>{{q.question_title}}</p>
         </div>

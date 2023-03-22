@@ -6,7 +6,7 @@ import { AppState } from 'src/app/State/appState';
 import { AuthenticaionService } from 'src/app/Services/auth/authenticaion.service';
 import { Store } from '@ngrx/store';
 import { loginUser } from 'src/app/State/Actions/userActions';
-
+import { AuthService } from 'src/app/Services/auth/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,7 +16,8 @@ import { loginUser } from 'src/app/State/Actions/userActions';
 })
 export class LoginComponent implements OnInit{
   loginForm!:FormGroup
-  constructor( private AuthService:AuthenticaionService, private router:Router,  private store: Store<AppState>){}
+  errorMess =""
+  constructor( private AuthenticationService:AuthenticaionService,private auth:AuthService, private router:Router,  private store: Store<AppState>){}
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null,[Validators.required, Validators.email]),
@@ -25,6 +26,19 @@ export class LoginComponent implements OnInit{
   }
   login1(){
     this.store.dispatch(loginUser({user:this.loginForm.value}))
-    // this.router.navigate(['posts'])
+    this.AuthenticationService.login(this.loginForm.value).subscribe(response =>{
+      console.log(response);
+      this.auth.setRole(response.is_admin)
+      this.auth.login()
+      localStorage.setItem('token', response.token)
+      if (response.is_admin == false && response.token) {
+          this.router.navigate(['posts'])  
+      } else if(response.is_admin == true && response.token){
+          this.router.navigate(['admin'])  
+      }
+    }
+    ,(error)=>{
+      this.errorMess= error.error.message;
+    })
   }
 }
