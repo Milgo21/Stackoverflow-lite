@@ -19,7 +19,7 @@
       <!-- Number of posts stat -->
       <div class="posts-stat" id="posts">
         <div class="post-no">
-          <h2>4</h2>
+          <h2>{{totalQuiz}}</h2>
         </div>
         <div class="stat-title" >
           <p>Total Posts</p>
@@ -52,7 +52,7 @@
         <p>Previous</p>
       </div>
       <div class="page-no">
-      <p>3</p>
+      <p>1</p>
       </div>
       <div class="next">
         <p>Next</p>
@@ -78,7 +78,7 @@
     </div>
 
     <!-- One question -->
-    <div class="questions">
+    <div class="questions" *ngFor="let q of questions">
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -89,24 +89,27 @@
       </div>
       <div class="quiz-title">
         <div class="title">
-          <p>How to re-render component, using effect and Us state</p>
+          <p>q.question_title</p>
         </div>
         <div class="tags">
-          <h4>Javasript</h4>
-          <h4>Angular</h4>
+          <h4>q.question_tags</h4>
+          <!-- <h4>Angular</h4> -->
         </div>
         <div class="username">
           <p>Milgo21</p>
         </div>
       </div>
+      <div class="update"[routerLink]="['/update',q.id]">
+        <a (click)="update(q.id) ">Update</a>
+      </div>
       <div class="delete">
         <!-- <h1>x</h1> -->
-        <i class="fa-solid fa-xmark" (click)="deleteQuestion()"></i>
+        <i class="fa-solid fa-xmark" (click)="deleteQuestion(q.id)"></i>
       </div>
     </div>
 
     <!-- Question 2 -->
-    <div class="questions">
+    <!-- <div class="questions">
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -130,10 +133,10 @@
       <div class="delete">
         <i class="fa-solid fa-xmark"></i>
       </div>
-    </div>
+    </div> -->
 
     <!-- Question 3 -->
-    <div class="questions">
+    <!-- <div class="questions">
       <div class="votes-ans">
         <div class="votes">
           <p> 3 Answers</p>
@@ -155,11 +158,11 @@
         </div>
       </div>
       <div class="delete">
-        <!-- <h1>x</h1> -->
+        <h1>x</h1>
         <i class="fa-solid fa-xmark"></i>
-        <!-- <i class="fa-solid fa-trash"></i> -->
+        <i class="fa-solid fa-trash"></i>
       </div>
-    </div>
+    </div> -->
 
 
   </div>

@@ -17,10 +17,10 @@ export class AskquestionComponent implements OnInit{
   constructor(private QuizService:QuestionService, private Route:Router){}
   ngOnInit(): void {
     this.askForm = new FormGroup({
-      title: new FormControl(null, [Validators.required]),
-      description:new FormControl(null, [Validators.required]),
-      trial:new FormControl(null, [Validators.required]),
-      tags:new FormControl(null, [Validators.required])
+      question_title: new FormControl(null, [Validators.required]),
+      question_desc:new FormControl(null, [Validators.required]),
+      question_trial:new FormControl(null, [Validators.required]),
+      question_tags:new FormControl(null, [Validators.required])
     })
   }
   askquestion(){

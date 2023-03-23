@@ -28,7 +28,7 @@ GET http://localhost:4000/auth/users
 
 
 ### Get a single user by id
-GET http://localhost:4000/auth/users/2dcd76b7-918f-457e-8ebb-b4079a01b0fb
+GET http://localhost:4000/auth/users/d8958bb6-f461-42d7-9a5d-085bdac7da0e
 
 
 ### Update password
@@ -53,12 +53,19 @@ GET http://localhost:4000/auth/question
 Content-Type: application/json
 
 
+### Get all questions to a user
+GET http://localhost:4000/auth/question/all/quiz
+
 ### Get a single question
 GET http://localhost:4000/auth/question/2343
 
 
 ### Get full qustion details
-GET http://localhost:4000/auth/question/full/e8d7ad83-5987-429a-9d78-9e0d78091019
+GET http://localhost:4000/auth/question/full/08e0dad8-ed9b-446a-92f0-5c596ab2f336
+
+
+### Get all full qustions details
+GET http://localhost:4000/auth/question/full/all/q
 
 ### Update a question
 POST http://localhost:4000/auth/question/7

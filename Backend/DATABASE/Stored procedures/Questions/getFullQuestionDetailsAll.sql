@@ -1,7 +1,6 @@
 USE [Stackoverflow]
 GO
-CREATE OR ALTER PROCEDURE GetQuestionDetails
-@question_id VARCHAR(255)
+CREATE OR ALTER PROCEDURE GetQuestionDetailsAll
 AS
 BEGIN
     SELECT 
@@ -21,7 +20,7 @@ BEGIN
         LEFT JOIN Answers a ON q.id = a.question_id
         LEFT JOIN Votes v ON a.id = v.answer_id
         LEFT JOIN Comments c ON a.id = c.answer_id
-    WHERE q.id = @question_id
+   
     GROUP BY u.id, u.username, q.question_title,q.date_created,        q.question_desc,
         q.question_trial,
         q.question_tags, a.answer, c.comment
@@ -31,4 +30,4 @@ END
 
 USE [Stackoverflow]
 GO
-EXEC GetQuestionDetails '08e0dad8-ed9b-446a-92f0-5c596ab2f336'
+EXEC GetQuestionDetailsAll 

@@ -13,10 +13,10 @@ export class UpdatequestionComponent implements OnInit{
 updateForm!:FormGroup
 ngOnInit(): void {
   this.updateForm =  new FormGroup({
-    title: new FormControl(null, [Validators.required]),
-    description:new FormControl(null, [Validators.required]),
-    trial:new FormControl(null, [Validators.required]),
-    tags:new FormControl(null, [Validators.required])
+    title: new FormControl('', [Validators.required]),
+    description:new FormControl('', [Validators.required]),
+    trial:new FormControl('', [Validators.required]),
+    tags:new FormControl('', [Validators.required])
   })
 }
 updateQuestion(){
