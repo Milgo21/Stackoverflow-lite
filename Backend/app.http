@@ -57,7 +57,7 @@ Content-Type: application/json
 GET http://localhost:4000/auth/question/all/quiz
 
 ### Get a single question
-GET http://localhost:4000/auth/question/2343
+GET http://localhost:4000/auth/question/08e0dad8-ed9b-446a-92f0-5c596ab2f336
 
 
 ### Get full qustion details

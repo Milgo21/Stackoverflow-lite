@@ -22,7 +22,7 @@ BEGIN
         LEFT JOIN Votes v ON a.id = v.answer_id
         LEFT JOIN Comments c ON a.id = c.answer_id
     WHERE q.id = @question_id
-    GROUP BY u.id, u.username, q.question_title,q.date_created,        q.question_desc,
+    GROUP BY u.id, u.username, q.question_title,q.date_created,q.question_desc,
         q.question_trial,
         q.question_tags, a.answer, c.comment
 END
@@ -31,4 +31,4 @@ END
 
 USE [Stackoverflow]
 GO
-EXEC GetQuestionDetails '08e0dad8-ed9b-446a-92f0-5c596ab2f336'
+EXEC GetQuestionDetails 'e8d7ad83-5987-429a-9d78-9e0d78091019'

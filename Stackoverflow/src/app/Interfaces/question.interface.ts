@@ -18,6 +18,13 @@ is_deleted:boolean
 date_created:string
 }
 
+export interface UpdateQuestion{
+    question_titled:string
+    question_descd:string
+    question_triald:string
+    question_tagsd:string
+}
+
 
 export interface FullQuestion{
 user_id:string

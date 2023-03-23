@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./singlepost.component.css']
 })
 export class SinglepostComponent implements OnInit{
-  question!:Observable<FullQuestion>
+  question!:FullQuestion[]
   id!:string
   constructor(private route:ActivatedRoute, private QustionService:QuestionService){}
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class SinglepostComponent implements OnInit{
 
       this.QustionService.getSingleQuestionFull(this.id).subscribe((question)=>{
           console.log(question);
-
+        this.question = question
       })
 
 
@@ -39,6 +39,6 @@ export class SinglepostComponent implements OnInit{
 
   }
   postanswer(){
-    
+
   }
 }
