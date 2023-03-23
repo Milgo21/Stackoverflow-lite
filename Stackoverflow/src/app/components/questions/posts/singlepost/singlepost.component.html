@@ -87,9 +87,9 @@
                 </div>
               </div>
             </div>
-            <div class="add-comment">
-              <input type="text">
-              <button>Add comment</button>
+            <div class="add-comment" [formGroup] = "commentForm">
+              <input type="text" formControlName="comment">
+              <button type="submit"  (click)="addComment()">Add comment</button>
             </div>
           </div>
         </div>
@@ -105,10 +105,10 @@
       </div>
       <div class="post-input">
           <!-- <input type="text" placeholder="your answer bruvv" id="post"> -->
-          <textarea name="" id="" cols="30" rows="10" placeholder="Your answer bazuuu"></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="Your answer bazuuu" formControlName="answer"></textarea>
       </div>
       <div class="post-button">
-        <button>POST ANSWER </button>
+        <button type="submit" (click)="answerquestion">POST ANSWER </button>
       </div>
     </div>
   </div>
