@@ -1,30 +1,30 @@
 <div class="container" [formGroup]="updateForm" (ngSubmit)="updateQuestion()">
   <form>
     <div>
-      <label for="title">Question title</label><br>
-      <input type="text" formControlName="title">
-      <!-- <p *ngIf="updateForm.get('title')!.touched">title is required</p> -->
-      <p *ngIf="updateForm.get('title')!.touched && updateForm.get('title')!.invalid">Please enter title</p>
+      <label for="question_title">Question title</label><br>
+      <input type="text" formControlName="question_title">
+      <!-- <p *ngIf="updateForm.get('question_title')!.touched">question_title is required</p> -->
+      <p *ngIf="updateForm.get('question_title')!.touched && updateForm.get('question_title')!.invalid">Please enter title</p>
     </div>
     <br>
     <div>
-      <label for="description">Question description</label><br>
-      <textarea name="" id="" cols="30" rows="10" formControlName="description"></textarea>
+      <label for="question_desc">Question description</label><br>
+      <textarea name="" id="" cols="30" rows="10" formControlName="question_desc"></textarea>
       <!-- <input type="text" > -->
-      <p *ngIf="updateForm.get('description')!.touched && updateForm.get('description')!.invalid">description is requred</p>
+      <p *ngIf="updateForm.get('question_desc')!.touched && updateForm.get('question_desc')!.invalid">description is requred</p>
     </div>
     <br>
     <div>
-      <label for="trial">What you tried </label><br>
+      <label for="question_trial">What you tried </label><br>
       <!-- <input type="text" > -->
-      <textarea name="" id="" cols="30" rows="10" formControlName="trial"></textarea>
-      <p *ngIf="updateForm.get('trial')!.touched && updateForm.get('trial')!.invalid">Trial is required</p>
+      <textarea name="" id="" cols="30" rows="10" formControlName="question_trial"></textarea>
+      <p *ngIf="updateForm.get('question_trial')!.touched && updateForm.get('question_trial')!.invalid">Trial is required</p>
     </div>
     <br>
     <div>
-      <label for="tags">Tags</label><br>
-      <input type="text" formControlName="tags">
-      <p *ngIf="updateForm.get('tags')!.touched && updateForm.get('tags')!.invalid">Tag is required</p>
+      <label for="question_tags">Tags</label><br>
+      <input type="text" formControlName="question_tags">
+      <p *ngIf="updateForm.get('question_tags')!.touched && updateForm.get('question_tags')!.invalid">Tag is required</p>
     </div>
     <br>
     <br>

@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit{
   ngOnInit(): void {
     this.QuestionService.getAllQuestions().subscribe((questions)=>{
       this.questions=questions
-      console.log(questions);
+      // console.log(questions);
 
     })
   }

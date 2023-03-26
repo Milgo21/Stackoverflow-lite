@@ -20,7 +20,7 @@ export const askQuestion =async (req:Request, res:Response ) => {
         const id = uuid()
 
         const {question_title,question_desc , question_trial , question_tags } = req.body
-        const question:QuestionAsked ={
+        const question={
             id:id,
             question_title,
             question_desc,
@@ -127,10 +127,62 @@ export const getSIngleQuestionFullDetails =async (req:Request, res:Response) => 
     try {
         const question_id = req.params.id
         const fullq = (await _db.exec('GetQuestionDetails', { question_id })).recordset
-        if (fullq.length < 1) {
+        let finalfullq=[]
+        if(fullq.length > 1){
+            for(let i=0; i <fullq.length; i++){
+
+                for(let key in fullq[i]){
+                    if (fullq[i].hasOwnProperty(key)) {
+                        if (fullq[i][key] !== fullq[fullq.length-1][key]) {
+                            finalfullq.push({ [key]: [fullq[i][key]] });
+                        } else {
+                            finalfullq.push({ [key]: fullq[i][key] });
+                        }
+                        }
+                }
+            }
+
+        }
+        console.log(finalfullq);
+        
+
+        if (!fullq) {
             res.status(404).json({message: "Question is 404, cannot get details"})
         } else {
             res.status(200).json(fullq)
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Get all full questions details 
+export const getallQuestionFullDetails =async (req:Request, res:Response) => {
+    try {
+        // const question_id = req.params.id
+        const fullqz = (await _db.exec('GetQuestionDetailsAll')).recordset
+        if (fullqz.length<0) {
+            res.status(404).json({message: "Questions are 404, cannot get details"})
+        } else {
+            res.status(200).json(fullqz)
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+
+// Get single user questions   
+export const getAllSingleUserQuizs =async (req:Request, res:Response) => {
+    try {
+        const user_id = req.body.user.id
+        console.log(user_id);
+        
+        const questions = (await _db.exec('getAllUserQuestions', { user_id })).recordset
+        if (questions.length > 0) {
+            res.status(200).json(questions)
+        } else {
+            res.status(404).json({message: "User has no questions"})
         }
     } catch (error) {
         res.status(500).json(error)

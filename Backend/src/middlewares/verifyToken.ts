@@ -7,22 +7,24 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     const bearerHeader = req.headers["authorization"];
-    console.log(bearerHeader)
+    // console.log(bearerHeader)
     
+try {
     if (typeof bearerHeader !== "undefined") {
         const bearer = bearerHeader.split(" ");
         const bearerToken = bearer[1];
-        console.log(bearerToken);
+        // console.log(bearerToken);
         jwt.verify(bearerToken,process.env.JWT_SECRET as string, (err, authData) => {
             if (err) {
                 res.sendStatus(403);
             } else {
                 req.body.user = authData;
-                next();
             }
         }
         );
-    } else {
-        res.sendStatus(403);
     }
+} catch (error) {
+return res.json(error)  
+}
+next();
 };

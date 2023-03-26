@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AskQuestion, Question } from 'src/app/Interfaces/question.interface';
+import { AskQuestion, FullQuestion, Question, UpdateQuestion } from 'src/app/Interfaces/question.interface';
 import { Observable } from 'rxjs';
 import { Message } from 'src/app/Interfaces/user.interface';
 @Injectable({
@@ -17,10 +17,18 @@ export class QuestionService {
   askQuestion(quiz:AskQuestion):Observable<AskQuestion>{
     return this.http.post<AskQuestion>('http://localhost:4000/auth/question/ask', quiz)
   }
-  updateQuestion(updatedQUiz:any){
-    return this.http.put(``,updatedQUiz)
+  updateQuestion(id:string,updatedQUiz:UpdateQuestion):Observable<Question>{
+    return this.http.put<Question>(`http://localhost:4000/auth/question//${id}`,updatedQUiz)
   }
-  getSingleQuestionFull(id:string):Observable<any>{
-    return this.http.get<any>(`http://localhost:4000/auth/question/full${id}`)
+  getUserQuestions():Observable<Question[]>{
+    return this.http.get<Question[]>('http://localhost:4000/auth/question/all/quiz')
+  }
+
+
+  getSingleQuestionFull(id:any):Observable<FullQuestion[]>{
+    return this.http.get<FullQuestion[]>(`http://localhost:4000/auth/question/full/${id}`)
+  }
+  getSingleQuizById(id:string):Observable<Question>{
+    return this.http.get<Question>(`http://localhost:4000/auth/question/${id}`)
   }
 }

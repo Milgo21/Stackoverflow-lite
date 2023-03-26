@@ -155,7 +155,19 @@
   display: flex;
   justify-content: flex-end;
 }
-
+.update{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-end;
+}
+.update > a{
+  text-decoration: none;
+  padding: 0.5rem;
+  /* background-color: #E4E3C4; */
+  border-radius: 3px;
+  cursor: pointer;
+  /* color:white */
+}
 .right-bar{
   width: 15%;
   background-color: #E4E3C4;
