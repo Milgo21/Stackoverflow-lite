@@ -24,6 +24,13 @@ export class QuestionService {
     return this.http.get<Question[]>('http://localhost:4000/auth/question/all/quiz')
   }
 
+  addComment(){
+
+  }
+  addAnswer(answer:string, question_id:string){
+   return this.http.post('http://localhost:4000/auth/answer', {answer, question_id})
+  }
+
 
   getSingleQuestionFull(id:any):Observable<FullQuestion[]>{
     return this.http.get<FullQuestion[]>(`http://localhost:4000/auth/question/full/${id}`)

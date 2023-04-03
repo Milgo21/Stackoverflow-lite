@@ -36,6 +36,7 @@ question_tags:string
 date_created:string
 answer:string
 vote_count:number
-comment:string
+comments:[]
+id:string
 
 }

@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { FullQuestion, Question } from 'src/app/Interfaces/question.interface';
 import { QuestionService } from 'src/app/Services/Question/question.service';
 import { Observable } from 'rxjs';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-singlepost',
@@ -20,7 +20,13 @@ export class SinglepostComponent implements OnInit{
   user_id!:string
   commentForm!:FormGroup
   answerForm!:FormGroup
-  constructor(private route:ActivatedRoute, private QustionService:QuestionService){}
+  myGroup!:FormGroup
+  noofans!:number
+  constructor(private route:ActivatedRoute, private QustionService:QuestionService, private fb:FormBuilder){
+    this.answerForm = this.fb.group({
+      answer:('')
+    })
+  }
   ngOnInit(): void {
     this.route.params.subscribe((param:Params)=>{
       this.id = param['id']
@@ -29,31 +35,25 @@ export class SinglepostComponent implements OnInit{
       this.QustionService.getSingleQuestionFull(this.id).subscribe((questions)=>{
           console.log(questions);
         this.question = questions
-
-        if(questions){
-          for(let i=0; i <this.question.length; i++){
-            if(this.question[i].user_id === this.user_id){
-
-            }
-          }
-        }
+        this.noofans = questions.length
       })
 
 
     })
 
+
+    // this.answerForm = new FormGroup ({
+    //   answer:new FormControl(null)
+    // })
+
+
     this.commentForm = new FormGroup({
       comment:new FormControl(null)
     })
-
-    this.answerForm = new FormGroup ({
-      answer:new FormControl(null)
-    })
-
-
   }
 
-  addComment(){
+  addComment(id:string){
+    console.log(this.answerForm);
 
   }
   like(){
@@ -62,7 +62,23 @@ export class SinglepostComponent implements OnInit{
   dislike(){
 
   }
-  answerquestion(){
+  answerquestion(question_id:string){
+    const control = this.answerForm.get('answer');
+    if (control != null) {
+    const value = control.value;
+    console.log(value);
+       // const nswer = this.answerForm.get('answer').value;
+
+
+
+
+    console.log(question_id +'mimi');
+    this.QustionService.addAnswer(value,question_id).subscribe((response)=>{
+      console.log(response);
+
+    })
 
   }
+
+}
 }
