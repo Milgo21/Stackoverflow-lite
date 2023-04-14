@@ -24,7 +24,9 @@ export interface UpdateQuestion{
     question_triald:string
     question_tagsd:string
 }
-
+export interface getUsersQuizSuccess{
+  question:Question[]
+}
 
 export interface FullQuestion{
 user_id:string
@@ -36,6 +38,7 @@ question_tags:string
 date_created:string
 answer:string
 vote_count:number
-comment:string
+comments:[]
+id:string
 
 }

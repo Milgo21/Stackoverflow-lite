@@ -127,23 +127,23 @@ export const getSIngleQuestionFullDetails =async (req:Request, res:Response) => 
     try {
         const question_id = req.params.id
         const fullq = (await _db.exec('GetQuestionDetails', { question_id })).recordset
-        let finalfullq=[]
-        if(fullq.length > 1){
-            for(let i=0; i <fullq.length; i++){
+        // let finalfullq=[]
+        // if(fullq.length > 1){
+        //     for(let i=0; i <fullq.length; i++){
 
-                for(let key in fullq[i]){
-                    if (fullq[i].hasOwnProperty(key)) {
-                        if (fullq[i][key] !== fullq[fullq.length-1][key]) {
-                            finalfullq.push({ [key]: [fullq[i][key]] });
-                        } else {
-                            finalfullq.push({ [key]: fullq[i][key] });
-                        }
-                        }
-                }
-            }
+        //         for(let key in fullq[i]){
+        //             if (fullq[i].hasOwnProperty(key)) {
+        //                 if (fullq[i][key] !== fullq[fullq.length-1][key]) {
+        //                     finalfullq.push({ [key]: [fullq[i][key]] });
+        //                 } else {
+        //                     finalfullq.push({ [key]: fullq[i][key] });
+        //                 }
+        //                 }
+        //         }
+        //     }
 
-        }
-        console.log(finalfullq);
+        // }
+        // console.log(finalfullq);
         
 
         if (!fullq) {

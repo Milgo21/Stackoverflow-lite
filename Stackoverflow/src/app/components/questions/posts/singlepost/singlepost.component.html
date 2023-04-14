@@ -11,7 +11,7 @@
   </div>
 <!-- Middle content -->
   <div class="middle-content">
-<div *ngFor="for let q of question">
+<div *ngFor="for let q of question" >
     <!-- One question -->
     <div class="questions">
       <div class="quiz-title">
@@ -45,7 +45,7 @@
       <div class="answer-left">
 
         <div class="no-of-answers">
-          <p>1 Answer</p>
+          <p>{{noofans}}Answer</p>
         </div>
         <div class="ratings">
           <div class="like" title="Answer is useful">
@@ -56,7 +56,7 @@
           </div>
 
           <div class="like-count">
-            4
+            {{q.vote_count}}
           </div>
           <div class="dislike" title="Answer is as useful as a wooden frying pan">
             <!-- <span class="material-symbols-outlined">
@@ -80,17 +80,19 @@
           <div class="ans-comments">
             <div class="comments">
               <h4>Comments</h4>
-              <div class="comment">
-                <p>{{q.comment}}</p>
+              <div class="comment" >
+                <p>{{q.comments}}</p>
                 <div class="comment-username">
-                  <p>Milgo21</p>
+                  <!-- <p>Milgo21</p> -->
                 </div>
               </div>
             </div>
-            <div class="add-comment" [formGroup] = "commentForm">
+            <form action="">
+            <div class="add-comment" [formGroup] = "commentForm" ngSubmit="addComment(q.user_id)">
               <input type="text" formControlName="comment">
-              <button type="submit"  (click)="addComment()">Add comment</button>
+              <button type="submit">Add comment</button>
             </div>
+          </form>
           </div>
         </div>
       </div>
@@ -99,17 +101,19 @@
     </div>
 
     <!-- Post your answer -->
-    <div class="post-answer">
+    <div class="post-answer" >
       <div class="post-title">
         <p>Your answer</p>
       </div>
+      <form [formGroup]="answerForm"  (ngSubmit)="answerquestion(question[0].id)">
       <div class="post-input">
           <!-- <input type="text" placeholder="your answer bruvv" id="post"> -->
           <textarea name="" id="" cols="30" rows="10" placeholder="Your answer bazuuu" formControlName="answer"></textarea>
       </div>
       <div class="post-button">
-        <button type="submit" (click)="answerquestion">POST ANSWER </button>
+        <button type="submit">POST ANSWER </button>
       </div>
+    </form>
     </div>
   </div>
 
