@@ -6,13 +6,11 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env')})
 
 export const sqlConfig = {
     
-    // user: process.env.DB_USER,
-    user:'sa',
-    // password: process.env.DB_PWD,
-    password:'BTCES/2018/85527@mku',
+    user: process.env.DB_USER,
+    password: process.env.DB_PWD,
 
-    // database: process.env.DB_NAME,
-    database:'Stackoverflow',
+    database: process.env.DB_NAME,
+    // database:'Stackoverflow',
     server: 'localhost',
     
     pool: {
